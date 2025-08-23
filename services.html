@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Summit Care Services - Explore our full catalog of medical specialties and treatments." />
+    <title>Services | Summit Care</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Global Header -->
+    <header>
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="index.html" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="appointment.html">Book Appointment</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a class="btn btn-outline btn-signup" href="signup.html" role="button" aria-label="Sign up button">Sign Up</a>
+                    <a class="btn btn-primary btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="services-main">
+        <!-- Hero Section -->
+        <section class="services-hero">
+            <div class="hero-bg" style="background-image:url('images/team.jpg');"></div>
+            <div class="hero-content">
+                <h1 style="color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.18);">Compassionate Care, Exceptional Medicine</h1>
+                <p style="color:#eaf6fb; text-shadow:0 2px 8px rgba(0,0,0,0.18);">Welcome to Summit Care, where your health journey is our passion. Discover world-class medical services delivered with heart, expertise, and a personal touch—because you deserve the best at every step.</p>
+                <a href="appointment.html" class="btn btn-primary btn-large">Book Your Appointment Today</a>
+            </div>
+        </section>
+        <!-- Core Services Overview -->
+        <section class="core-services">
+            <div class="container">
+                <h2 class="section-title">Our Core Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="images/team.jpg" alt="General Medicine" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-stethoscope service-icon"></i>
+                        <h3>General Medicine</h3>
+                        <p>Comprehensive care for adults and seniors.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="general-medicine">Learn More</button>
+                            <a href="appointment.html?service=general-medicine" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/brain1.jpg" alt="Cardiology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-heartbeat service-icon"></i>
+                        <h3>Cardiology</h3>
+                        <p>Expert heart care and diagnostics.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="cardiology">Learn More</button>
+                            <a href="appointment.html?service=cardiology" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/brain2.jpg" alt="Pediatrics" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-baby service-icon"></i>
+                        <h3>Pediatrics</h3>
+                        <p>Gentle care for children and teens.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="pediatrics">Learn More</button>
+                            <a href="appointment.html?service=pediatrics" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/network1.jpg" alt="Diagnostics & Imaging" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-x-ray service-icon"></i>
+                        <h3>Diagnostics & Imaging</h3>
+                        <p>Advanced testing and imaging services.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="diagnostics-imaging">Learn More</button>
+                            <a href="appointment.html?service=diagnostics-imaging" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/outreach.jpg" alt="Surgical Services" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-user-md service-icon"></i>
+                        <h3>Surgical Services</h3>
+                        <p>State-of-the-art surgical care.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="surgical-services">Learn More</button>
+                            <a href="appointment.html?service=surgical-services" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/teamp.jpg" alt="Mental Health" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-brain service-icon"></i>
+                        <h3>Mental Health</h3>
+                        <p>Compassionate counseling and psychiatric care.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="mental-health">Learn More</button>
+                            <a href="appointment.html?service=mental-health" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/team3.webp" alt="Obstetrics & Gynecology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-female service-icon"></i>
+                        <h3>Obstetrics & Gynecology</h3>
+                        <p>Women's health, prenatal, and reproductive care.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="obstetrics-gynecology">Learn More</button>
+                            <a href="appointment.html?service=obstetrics-gynecology" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/team1.webp" alt="Dermatology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <i class="fas fa-sun service-icon"></i>
+                        <h3>Dermatology</h3>
+                        <p>Skin, hair, and nail care for all ages.</p>
+                        <div class="service-actions">
+                            <button class="learn-more-btn" data-id="dermatology">Learn More</button>
+                            <a href="appointment.html?service=dermatology" class="btn btn-primary">Book Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Trust & Credibility Section -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-stats">
+                    <div><strong>20+ Years</strong> of Excellence</div>
+                    <div><strong>150+ Specialists</strong></div>
+                    <div><strong>95% Patient Satisfaction</strong></div>
+                </div>
+                <div class="accreditations">
+                    <img src="images/accreditation1.png" alt="JCI Accredited" />
+                    <img src="images/accreditation2.png" alt="ISO Certified" />
+                    <img src="images/accreditation3.png" alt="Partner Hospital" />
+                </div>
+                <div class="testimonials">
+                    <blockquote>
+                        <p>“Summit Care made me feel safe and heard. The doctors are truly world-class.”</p>
+                        <footer>— Priya S.</footer>
+                    </blockquote>
+                    <blockquote>
+                        <p>“The technology and care are unmatched. I recommend Summit to everyone.”</p>
+                        <footer>— Marcus R.</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        <!-- Why Choose Summit Care -->
+        <section class="why-choose">
+            <div class="container">
+                <h2>Why Choose Summit Care?</h2>
+                <div class="pillars">
+                    <div class="pillar">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Experienced Doctors</h3>
+                        <p>Board-certified specialists across 20+ fields.</p>
+                    </div>
+                    <div class="pillar">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Advanced Technology</h3>
+                        <p>State-of-the-art diagnostic & surgical equipment.</p>
+                    </div>
+                    <div class="pillar">
+                        <i class="fas fa-heart"></i>
+                        <h3>Personalized Care</h3>
+                        <p>Tailored treatment plans for every patient.</p>
+                    </div>
+                    <div class="pillar">
+                        <i class="fas fa-ambulance"></i>
+                        <h3>24/7 Emergency Support</h3>
+                        <p>Always available when it matters most.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Appointment & CTA Block -->
+        <section class="cta-block">
+            <div class="container">
+                <h2>Book a Consultation in Minutes</h2>
+                <div class="cta-options">
+                    <a href="appointment.html" class="btn btn-primary">Book Online</a>
+                    <a href="tel:+11234567890" class="btn btn-outline">Call (123) 456-7890</a>
+                    <a href="https://wa.me/11234567890" class="btn btn-outline">WhatsApp</a>
+                </div>
+                <form class="quick-appointment-form">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="text" placeholder="Service Needed" required />
+                    <input type="date" required />
+                    <input type="tel" placeholder="Contact Number" required />
+                    <button type="submit" class="btn btn-primary">Request Appointment</button>
+                </form>
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>Do I need a referral?</h3>
+                        <p>No referral is needed for most services. Contact us for details.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What insurance do you accept?</h3>
+                        <p>We accept most major insurance plans. Please call for specifics.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I prepare for my appointment?</h3>
+                        <p>Bring your ID, insurance card, and any relevant medical records.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Global Footer -->
+    <footer>
+        <div class="container footer-inner">
+            <p>&copy; 2023 Summit Care. All rights reserved.</p>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script type="module" src="services.js"></script>
+</body>
+
+</html>

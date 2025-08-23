@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar Start -->
+    <!-- ...navigation markup from index.html/nav.html... -->
+    <!-- Navigation Bar End -->
+    <main class="payment-main">
+        <section class="billing-section">
+            <div class="container">
+                <h1>Payment & Billing</h1>
+                <p class="billing-desc">View your outstanding invoices and payment history. For questions, contact our billing team.</p>
+                <div class="billing-tables">
+                    <div class="billing-table-wrapper">
+                        <h2>Outstanding Invoices</h2>
+                        <table class="billing-table" aria-label="Outstanding Invoices">
+                            <thead>
+                                <tr>
+                                    <th>Invoice ID</th>
+                                    <th>Date of Service</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="billing-table-wrapper">
+                        <h2>Payment History</h2>
+                        <table class="billing-table" aria-label="Payment History">
+                            <thead>
+                                <tr>
+                                    <th>Payment ID</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Amount Paid</th>
+                                    <th>Method</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="payment.js"></script>
+    <script>
+        // Redirect payment.html to billing.html
+        if (window.location.pathname.endsWith('payment.html')) {
+            window.location.replace('billing.html');
+        }
+    </script>
+</body>
+
+</html>

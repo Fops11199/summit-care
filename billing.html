@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Summit Care Billing & Payments - Manage and pay your medical bills securely and easily." />
+    <title>Billing & Payments | Summit Care</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="billing-bg">
+    <!-- Global Header (reuse from index.html) -->
+    <header>
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="index.html" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a class="btn btn-outline btn-signup" href="signup.html" role="button" aria-label="Sign up button">Sign Up</a>
+                    <a class="btn btn-primary btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="billing-main">
+        <div class="container billing-container">
+            <h1 class="billing-title">Billing & Payments</h1>
+            <div class="billing-columns">
+                <!-- Left Column: Billing Details -->
+                <section class="billing-details">
+                    <nav class="billing-tabs" role="tablist">
+                        <button class="tab active" data-tab="due">Due Now</button>
+                        <button class="tab" data-tab="history">Payment History</button>
+                    </nav>
+                    <div class="tab-content due-now active" id="tab-due">
+                        <h2>Outstanding Invoices</h2>
+                        <div class="invoice-list">
+                            <!-- Invoice cards will be rendered here by JS -->
+                        </div>
+                    </div>
+                    <div class="tab-content payment-history" id="tab-history" style="display:none;">
+                        <h2>Completed Payments</h2>
+                        <div class="receipt-list">
+                            <!-- Receipt cards will be rendered here by JS -->
+                        </div>
+                    </div>
+                </section>
+                <!-- Right Column: Payment Summary -->
+                <aside class="payment-summary sticky-panel">
+                    <div class="summary-card">
+                        <h2>Payment Summary</h2>
+                        <div class="summary-items">
+                            <p class="summary-empty">Select an invoice to begin.</p>
+                            <!-- Selected invoice line items will be rendered here by JS -->
+                        </div>
+                        <hr />
+                        <div class="summary-total">
+                            <span>Total Due:</span>
+                            <span class="total-amount">$0.00</span>
+                        </div>
+                        <div class="payment-methods">
+                            <h3>Payment Method</h3>
+                            <div class="saved-cards">
+                                <!-- Saved card options rendered by JS -->
+                            </div>
+                            <button class="add-card-btn"><i class="fas fa-plus"></i> Pay with a new card</button>
+                            <form class="add-card-form" style="display:none;">
+                                <div class="form-group card-number-group">
+                                    <label for="card-number">Card Number</label>
+                                    <input type="text" id="card-number" maxlength="19" autocomplete="cc-number" placeholder="1234 5678 9012 3456" />
+                                    <span class="card-icon"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-name">Name on Card</label>
+                                    <input type="text" id="card-name" autocomplete="cc-name" placeholder="Full Name" />
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-expiry">Expiry (MM/YY)</label>
+                                        <input type="text" id="card-expiry" maxlength="5" autocomplete="cc-exp" placeholder="MM/YY" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-cvc">CVC</label>
+                                        <input type="text" id="card-cvc" maxlength="4" autocomplete="cc-csc" placeholder="CVC" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="btn btn-primary pay-btn" disabled>Pay $0.00 Now</button>
+                        <div class="security-badges">
+                            <span class="badge"><i class="fas fa-lock"></i> SSL Secure Connection</span>
+                            <img src="images/stripe.png" alt="Stripe" class="badge-icon" />
+                            <img src="images/visa.png" alt="Visa" class="badge-icon" />
+                            <img src="images/mastercard.png" alt="Mastercard" class="badge-icon" />
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <!-- Receipt Modal -->
+    <div class="receipt-modal" style="display:none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-check"><i class="fas fa-check-circle"></i></span>
+                <h2>Payment Successful!</h2>
+            </div>
+            <div class="modal-hospital-info">
+                <img src="images/logo.png" alt="Summit Care Logo" class="modal-logo" />
+                <p>Summit Care Hospital<br />123 Wellness Ave, City, State<br />Phone: (123) 456-7890</p>
+            </div>
+            <div class="modal-receipt-details">
+                <p><strong>Transaction ID:</strong> <span class="modal-txid">#TX123456</span></p>
+                <p><strong>Date Paid:</strong> <span class="modal-date">Aug 22, 2025</span></p>
+                <p><strong>Paid To:</strong> Summit Care Hospital</p>
+                <p><strong>Paid From:</strong> <span class="modal-card">Visa **** 1234</span></p>
+                <div class="modal-items">
+                    <!-- Itemized list rendered by JS -->
+                </div>
+                <p class="modal-total"><strong>Total Amount Paid:</strong> <span>$0.00</span></p>
+                <p class="modal-message">A copy of this receipt has been sent to <span class="modal-email">patient@email.com</span>.</p>
+            </div>
+            <div class="modal-actions">
+                <a href="sample-receipt.pdf" class="btn btn-primary" download><i class="fas fa-download"></i> Download PDF</a>
+                <button class="btn btn-ghost close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+    <!-- Global Footer -->
+    <footer>
+        <div class="container footer-inner">
+            <p>&copy; 2023 Summit Care. All rights reserved.</p>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script type="module" src="payment.js"></script>
+</body>
+</html>

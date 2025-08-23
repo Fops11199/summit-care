@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sign up for Summit Care - Create your healthcare portal account securely." />
+    <title>Sign Up | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Outfit', Arial, sans-serif;
+            background: linear-gradient(120deg, #eaf6fb 0%, #f7fafd 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-main {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-card {
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.10), 0 2px 8px rgba(127, 83, 172, 0.08);
+            padding: 2.5rem 2rem;
+            max-width: 440px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signup-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1D4ED8;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .signup-brand .logo-mark {
+            color: #10B981;
+            font-size: 2.2rem;
+            
+        }
+
+        .signup-card h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #7F53AC;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .signup-card p {
+            color: #222;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .signup-trust {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.98rem;
+            color: #43C6AC;
+            margin-bottom: 1.2rem;
+        }
+
+        .signup-trust i {
+            color: #10B981;
+            font-size: 1.1rem;
+        }
+
+        .signup-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .signup-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .signup-step .step-icon {
+            font-size: 1.3rem;
+            color: #1D4ED8;
+            background: #eaf6fb;
+            border-radius: 50%;
+            padding: 0.4rem;
+            margin-bottom: 0.2rem;
+            border: 2px solid #e0e0e0;
+        }
+
+        .signup-step.active .step-icon {
+            color: #fff;
+            background: #10B981;
+            border: 2px solid #10B981;
+        }
+
+        .signup-step .step-label {
+            font-size: 0.92rem;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .signup-step.active .step-label {
+            color: #10B981;
+        }
+
+        .signup-form {
+            width: 100%;
+        }
+
+        .signup-form .form-field {
+            margin-bottom: 1.2rem;
+        }
+
+        .signup-form label {
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            border: 1.5px solid #e0e0e0;
+            font-size: 1.02rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+            background: #f7fafd;
+        }
+
+        .signup-form input:focus,
+        .signup-form select:focus {
+            border-color: #1D4ED8;
+            box-shadow: 0 0 0 2px #10B981;
+        }
+
+        .step-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .signup-btn {
+            width: 100%;
+            background: #f7fafd;
+            color: #222;
+            font-weight: 600;
+            font-size: 1.08rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 0.7rem;
+            padding: 0.8rem 0;
+            margin-top: 0.3rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(127, 83, 172, 0.04);
+            transition: background 0.2s, color 0.2s, transform 0.2s, filter 0.2s;
+            filter: blur(2px);
+            opacity: 0.6;
+        }
+
+        .signup-btn.enabled {
+            filter: none;
+            opacity: 1;
+        }
+
+        .signup-btn:hover.enabled {
+            background: #eaf6fb;
+            color: #1D4ED8;
+            transform: scale(1.03);
+        }
+
+        .signup-footer {
+            margin-top: 1.7rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #222;
+        }
+
+        .signup-footer a {
+            color: #7F53AC;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .signup-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 1rem;
+            color: #1D4ED8;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        .home-link:hover {
+            color: #10B981;
+            text-decoration: underline;
+        }
+
+        .social-signup {
+            margin-top: 1.2rem;
+            text-align: center;
+        }
+
+        .social-btn {
+            background: #eaf6fb;
+            color: #222;
+            border: none;
+            border-radius: 0.7rem;
+            padding: 0.6rem 1.2rem;
+            margin: 0.3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .social-btn.google {
+            color: #DB4437;
+        }
+
+        .social-btn.apple {
+            color: #222;
+        }
+
+        .social-btn:hover {
+            background: #10B981;
+            color: #fff;
+        }
+
+        .checkbox-label.required {
+            padding-left: 0.5rem;
+        }
+
+        .consent-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .consent-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: #f7fafd;
+            border-radius: 0.5rem;
+            padding: 0.7rem 1rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .consent-checkbox input[type="checkbox"] {
+            accent-color: #10B981;
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .mark-all-btn {
+            background: #eaf6fb;
+            color: #1D4ED8;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 0.7rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .mark-all-btn:hover {
+            background: #10B981;
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .signup-main {
+                min-height: 100vh;
+                padding: 2rem 0;
+            }
+
+            .signup-card {
+                max-width: 98vw;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+    </style>
+    <script defer src="signup.js"></script>
+</head>
+
+<body>
+    <div class="signup-main">
+        <div class="signup-card">
+            <a href="index.html" class="home-link" aria-label="Back to Home">
+                <i class="fas fa-arrow-left"></i> Home
+            </a>
+            <div class="signup-brand">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </div>
+            <h1>Start Your Summit Care Journey</h1>
+            <p>Create your secure healthcare account in minutes.</p>
+            <div class="signup-trust">
+                <i class="fas fa-lock"></i>
+                <span>Your information is encrypted & confidential</span>
+            </div>
+            <form class="signup-form" id="signupForm" novalidate>
+                <div class="form-step active" data-step="1">
+                    <div class="form-field">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email Address</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="your@email.com" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Mobile Phone</label>
+                        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(123) 456-7890" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Create a strong password" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password" required />
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="signup-btn next-step" data-next="2">Next</button>
+                    </div>
+                </div>
+                <div class="form-step" data-step="2">
+                    <div class="form-field">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input id="dateOfBirth" name="dateOfBirth" type="date" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="address">Address</label>
+                        <input id="address" name="address" type="text" autocomplete="street-address" placeholder="Enter your address" required />
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="signup-btn prev-step" data-prev="1">Previous</button>
+                        <button type="button" class="signup-btn next-step" data-next="3">Next</button>
+                    </div>
+                </div>
+                <div class="form-step" data-step="3">
+                    <div class="form-field">
+                        <label for="bloodGroup">Blood Group</label>
+                        <select id="bloodGroup" name="bloodGroup">
+                            <option value="">Select blood group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="allergies">Allergies <span style="font-weight:400;color:#888;font-size:0.95em;">(optional)</span></label>
+                        <input id="allergies" name="allergies" type="text" placeholder="List any allergies" />
+                    </div>
+                    <div class="form-field">
+                        <label for="insuranceId">Insurance / Patient ID <span style="font-weight:400;color:#888;font-size:0.95em;">(optional)</span></label>
+                        <input id="insuranceId" name="insuranceId" type="text" placeholder="Enter insurance or patient ID" />
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="signup-btn prev-step" data-prev="2">Previous</button>
+                        <button type="button" class="signup-btn next-step" data-next="4">Next</button>
+                    </div>
+                </div>
+                <div class="form-step" data-step="4">
+                    <div class="consent-options">
+                        <button type="button" class="mark-all-btn" id="markAllBtn">Mark All</button>
+                        <label class="consent-checkbox"><input type="checkbox" name="consent_privacy" required /> I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+                        <label class="consent-checkbox"><input type="checkbox" name="consent_terms" required /> I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
+                        <label class="consent-checkbox"><input type="checkbox" name="consent_general" required /> I consent to receive care as described in the <a href="consent.html" target="_blank">Consent to Treat</a></label>
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="signup-btn prev-step" data-prev="3">Previous</button>
+                        <button type="submit" class="signup-btn">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+            <div class="social-signup">
+                <span>Or sign up with:</span>
+                <button type="button" class="social-btn google"><i class="fab fa-google"></i> Google</button>
+                <button type="button" class="social-btn apple"><i class="fab fa-apple"></i> Apple</button>
+            </div>
+            <div class="signup-footer">
+                <span>Already have an account? <a href="login.html">Sign in here</a></span><br>
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Use</a> |
+                <a href="consent.html">Consent</a> |
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

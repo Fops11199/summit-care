@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pharmacy | Summit Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #eaf6fb 0%, #f7fafd 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Outfit', Arial, sans-serif;
+        }
+        .pharmacy-main {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            background: rgba(255,255,255,0.85);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(127,83,172,0.08);
+            padding: 2.5rem 2rem;
+        }
+        .pharmacy-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1D4ED8;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .pharmacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .pharmacy-table th, .pharmacy-table td {
+            padding: 0.85rem 0.7rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .pharmacy-table th {
+            background: #f7fafd;
+            color: #10B981;
+            font-weight: 600;
+        }
+        .pharmacy-table td.status {
+            font-weight: 600;
+        }
+        .status-refill {
+            color: #10B981;
+        }
+        .status-request {
+            color: #7F53AC;
+        }
+        .status-pickup {
+            color: #1D4ED8;
+        }
+        .status-unavailable {
+            color: #d32f2f;
+        }
+        .pharmacy-actions {
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        .pharmacy-btn, .add-cart-btn {
+            background: #f7fafd;
+            color: #1D4ED8;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: none;
+            transition: background 0.18s, color 0.18s, border 0.18s;
+        }
+        .pharmacy-btn:disabled, .add-cart-btn:disabled {
+            background: #f3f3f3;
+            color: #aaa;
+            border-color: #eee;
+            cursor: not-allowed;
+        }
+        .pharmacy-btn:hover:not(:disabled), .add-cart-btn:hover:not(:disabled),
+        .pharmacy-btn:focus:not(:disabled), .add-cart-btn:focus:not(:disabled) {
+            background: #eaf6fb;
+            color: #10B981;
+            border-color: #10B981;
+            outline: none;
+        }
+        .add-cart-btn { display: none; } /* Hide per-row add buttons for minimalism */
+        .pharmacy-caption {
+            font-size: 1rem;
+            color: #222;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .pharmacy-main {
+                padding: 1.2rem 0.5rem;
+            }
+            .pharmacy-title {
+                font-size: 1.3rem;
+            }
+            .pharmacy-table th, .pharmacy-table td {
+                padding: 0.5rem 0.3rem;
+                font-size: 0.95rem;
+            }
+        }
+        .pharmacy-cards-row {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .pharmacy-card {
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(127,83,172,0.08);
+            padding: 1rem 1rem 0.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .pharmacy-card img {
+            width: 150px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 0.7rem;
+        }
+        .pharmacy-card span {
+            font-size: 1.15rem;
+            color: #10B981;
+            font-weight: 700;
+        }
+        .pharmacy-upload-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .upload-label {
+            font-weight: 600;
+            color: #1D4ED8;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        #booklet-upload {
+            margin-top: 0.5rem;
+        }
+        #booklet-preview img {
+            box-shadow: 0 2px 8px rgba(127,83,172,0.08);
+        }
+        .pharmacy-search-section {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+        #pharmacy-search {
+            padding: 0.7rem 1.2rem;
+            border-radius: 1rem;
+            border: 1.5px solid #e0e0e0;
+            font-size: 1.15rem;
+            width: 320px;
+            max-width: 100%;
+        }
+        .pharmacy-table th, .pharmacy-table td {
+            font-size: 1.08rem;
+        }
+        .pharmacy-cart-section {
+            margin-top: 2.5rem;
+            background: #f7fafd;
+            border-radius: 1.2rem;
+            box-shadow: 0 2px 8px rgba(127,83,172,0.08);
+            padding: 1.5rem;
+        }
+        .pharmacy-cart-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.2rem 0;
+        }
+        .pharmacy-cart-list li {
+            background: #fff;
+            border-radius: 0.7rem;
+            margin-bottom: 0.7rem;
+            padding: 0.7rem 1rem;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.08rem;
+        }
+        .cart-date {
+            color: #7F53AC;
+            font-size: 0.98rem;
+            margin-left: auto;
+        }
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+        @media (max-width: 900px) {
+            .pharmacy-cards-row {
+                gap: 1rem;
+            }
+            .pharmacy-card {
+                width: 110px;
+                padding: 0.7rem 0.3rem 0.2rem 0.3rem;
+            }
+            .pharmacy-card img {
+                width: 80px;
+                height: 60px;
+            }
+            #pharmacy-search {
+                width: 100%;
+            }
+        }
+        .pharmacy-hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 520px;
+            background: linear-gradient(120deg, rgba(202,255,230,0.18) 0%, rgba(230,255,245,0.12) 100%), url('https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            z-index: 0;
+            opacity: 0.32;
+            overflow: hidden;
+        }
+        .pharmacy-bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.22;
+            animation: fall-shape 7s linear infinite;
+        }
+        .pharmacy-bg-shape.shape1 {
+            width: 54px; height: 54px;
+            left: 12%; top: -60px;
+            background: #b6f5d8;
+            animation-delay: 0s;
+        }
+        .pharmacy-bg-shape.shape2 {
+            width: 38px; height: 38px;
+            left: 70%; top: -40px;
+            background: #a3e9c7;
+            animation-delay: 2s;
+        }
+        .pharmacy-bg-shape.shape3 {
+            width: 24px; height: 24px;
+            left: 40%; top: -30px;
+            background: #d0fbe7;
+            animation-delay: 1.2s;
+        }
+        .pharmacy-bg-shape.shape4 {
+            width: 32px; height: 32px;
+            left: 85%; top: -50px;
+            background: #c2f7e2;
+            animation-delay: 3.5s;
+        }
+        @keyframes fall-shape {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(520px); }
+        }
+        .pharmacy-hero {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            padding-top: 3.5rem;
+            padding-bottom: 2.5rem;
+            margin-bottom: 3.5rem; /* Increased margin for clear separation */
+        }
+        .pharmacy-hero-content {
+            background: rgba(255,255,255,0.92);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(16,185,129,0.13), 0 2px 8px rgba(127,83,172,0.10);
+            padding: 2.5rem 2.5rem 2.2rem 2.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            border: 1.5px solid #e0f7ef;
+        }
+        .pharmacy-hero-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #1D4ED8;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.01em;
+            text-shadow: 0 2px 8px rgba(16,185,129,0.08);
+        }
+        .pharmacy-hero-desc {
+            font-size: 1.18rem;
+            color: #222;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+        }
+        @media (max-width: 700px) {
+            .pharmacy-hero-bg { height: 260px; }
+            .pharmacy-hero-content { padding: 1.2rem 0.7rem; }
+            .pharmacy-hero-title { font-size: 1.3rem; }
+            .pharmacy-hero-desc { font-size: 1rem; }
+            .pharmacy-hero { min-height: 180px; margin-bottom: 1.7rem; }
+        }
+    </style>
+    <script>
+        // Expanded prescription data with 2025 dates
+        const mockUserPrescriptions = [
+            { id: 'rx123', medicationName: 'Lisinopril', dosage: '10mg Tablet', lastFilled: '2025-08-01', status: 'Refill Available' },
+            { id: 'rx456', medicationName: 'Atorvastatin', dosage: '20mg Tablet', lastFilled: '2025-07-28', status: 'Refill Available' },
+            { id: 'rx789', medicationName: 'Metformin', dosage: '500mg Capsule', lastFilled: '2025-07-15', status: 'Request Sent' },
+            { id: 'rx101', medicationName: 'Albuterol Inhaler', dosage: '90mcg Inhalation', lastFilled: '2025-07-10', status: 'Ready for Pickup' },
+            { id: 'rx112', medicationName: 'Omeprazole', dosage: '20mg Capsule', lastFilled: '2025-08-10', status: 'Refill Not Available' },
+            { id: 'rx113', medicationName: 'Amlodipine', dosage: '5mg Tablet', lastFilled: '2025-07-05', status: 'Refill Available' },
+            { id: 'rx114', medicationName: 'Simvastatin', dosage: '40mg Tablet', lastFilled: '2025-07-02', status: 'Refill Not Available' },
+            { id: 'rx115', medicationName: 'Levothyroxine', dosage: '50mcg Tablet', lastFilled: '2025-07-18', status: 'Refill Available' },
+            { id: 'rx116', medicationName: 'Gabapentin', dosage: '300mg Capsule', lastFilled: '2025-07-20', status: 'Request Sent' },
+            { id: 'rx117', medicationName: 'Hydrochlorothiazide', dosage: '25mg Tablet', lastFilled: '2025-07-12', status: 'Refill Available' },
+            { id: 'rx118', medicationName: 'Sertraline', dosage: '100mg Tablet', lastFilled: '2025-07-28', status: 'Ready for Pickup' },
+            { id: 'rx119', medicationName: 'Amoxicillin', dosage: '500mg Capsule', lastFilled: '2025-08-02', status: 'Refill Not Available' },
+            { id: 'rx120', medicationName: 'Prednisone', dosage: '10mg Tablet', lastFilled: '2025-07-08', status: 'Refill Available' },
+            { id: 'rx121', medicationName: 'Cetirizine', dosage: '10mg Tablet', lastFilled: '2025-07-14', status: 'Refill Available' },
+            { id: 'rx122', medicationName: 'Montelukast', dosage: '10mg Tablet', lastFilled: '2025-07-19', status: 'Request Sent' },
+            { id: 'rx1234', medicationName: 'Ibuprofen', dosage: '200mg Tablet', lastFilled: '2025-08-15', status: 'Refill Available' },
+            { id: 'rx1235', medicationName: 'Paracetamol', dosage: '500mg Tablet', lastFilled: '2025-08-12', status: 'Refill Available' },
+            { id: 'rx1236', medicationName: 'Azithromycin', dosage: '250mg Tablet', lastFilled: '2025-08-05', status: 'Refill Not Available' },
+            { id: 'rx1237', medicationName: 'Doxycycline', dosage: '100mg Capsule', lastFilled: '2025-08-03', status: 'Refill Available' },
+            { id: 'rx1238', medicationName: 'Clopidogrel', dosage: '75mg Tablet', lastFilled: '2025-08-09', status: 'Refill Available' }
+        ];
+        let filteredPrescriptions = [...mockUserPrescriptions];
+        let cart = [];
+        let lastDeleted = null;
+        document.addEventListener('DOMContentLoaded', function () {
+            const tableBody = document.getElementById('pharmacy-table-body');
+            const requestBtn = document.getElementById('request-refill-btn');
+            const statusMsg = document.getElementById('pharmacy-status-msg');
+            const searchInput = document.getElementById('pharmacy-search');
+            const bookletUpload = document.getElementById('booklet-upload');
+            const bookletPreview = document.getElementById('booklet-preview');
+            const cartList = document.getElementById('pharmacy-cart-list');
+            const cartDeleteBtn = document.getElementById('cart-delete-btn');
+            const cartUndoBtn = document.getElementById('cart-undo-btn');
+            function renderTable() {
+                tableBody.innerHTML = '';
+                filteredPrescriptions.forEach(rx => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><input type="checkbox" ${rx.status === 'Refill Available' ? '' : 'disabled'} data-id="${rx.id}" /></td>
+                        <td>${rx.medicationName}</td>
+                        <td>${rx.dosage}</td>
+                        <td>${rx.lastFilled}</td>
+                        <td class="status ${rx.status === 'Refill Available' ? 'status-refill' : rx.status === 'Request Sent' ? 'status-request' : rx.status === 'Ready for Pickup' ? 'status-pickup' : 'status-unavailable'}">${rx.status}</td>
+                        <td><button class="pharmacy-btn add-cart-btn" data-id="${rx.id}" ${rx.status === 'Refill Available' ? '' : 'disabled'}>Add</button></td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            }
+            function updateButtonState() {
+                const checkboxes = tableBody.querySelectorAll('input[type="checkbox"]:enabled');
+                requestBtn.disabled = !Array.from(checkboxes).some(cb => cb.checked);
+            }
+            function renderCart() {
+                cartList.innerHTML = '';
+                cart.forEach(rx => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<input type="checkbox" class="cart-checkbox" data-id="${rx.id}" /> <strong>${rx.medicationName}</strong> (${rx.dosage}) <span class="cart-date">${rx.lastFilled}</span>`;
+                    cartList.appendChild(li);
+                });
+                cartDeleteBtn.disabled = cart.length === 0;
+                cartUndoBtn.disabled = !lastDeleted;
+            }
+            tableBody.addEventListener('change', updateButtonState);
+            tableBody.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-cart-btn')) {
+                    const rxId = e.target.getAttribute('data-id');
+                    const rx = mockUserPrescriptions.find(r => r.id === rxId);
+                    if (rx && !cart.some(item => item.id === rx.id)) {
+                        cart.push({...rx});
+                        renderCart();
+                        statusMsg.textContent = `${rx.medicationName} added to cart.`;
+                        setTimeout(() => statusMsg.textContent = '', 2500);
+                    }
+                }
+            });
+            requestBtn.addEventListener('click', function() {
+                // Bulk add selected prescriptions to cart
+                const checked = Array.from(tableBody.querySelectorAll('input[type="checkbox"]:checked'));
+                if (checked.length === 0) return;
+                let added = [];
+                checked.forEach(cb => {
+                    const rxId = cb.getAttribute('data-id');
+                    const rx = mockUserPrescriptions.find(r => r.id === rxId);
+                    if (rx && !cart.some(item => item.id === rx.id)) {
+                        cart.push({...rx});
+                        added.push(rx.medicationName);
+                    }
+                });
+                renderCart();
+                if (added.length > 0) {
+                    statusMsg.textContent = `${added.join(', ')} added to cart.`;
+                    setTimeout(() => statusMsg.textContent = '', 2500);
+                }
+            });
+            cartDeleteBtn.addEventListener('click', function() {
+                const checked = Array.from(cartList.querySelectorAll('.cart-checkbox:checked'));
+                if (checked.length === 0) return;
+                lastDeleted = [];
+                checked.forEach(cb => {
+                    const rxId = cb.getAttribute('data-id');
+                    const idx = cart.findIndex(r => r.id === rxId);
+                    if (idx !== -1) {
+                        lastDeleted.push(cart[idx]);
+                        cart.splice(idx, 1);
+                    }
+                });
+                renderCart();
+                statusMsg.textContent = "Deleted from cart.";
+                setTimeout(() => statusMsg.textContent = '', 2500);
+            });
+            cartUndoBtn.addEventListener('click', function() {
+                if (lastDeleted && lastDeleted.length > 0) {
+                    lastDeleted.forEach(rx => {
+                        if (!cart.some(item => item.id === rx.id)) cart.push(rx);
+                    });
+                    renderCart();
+                    statusMsg.textContent = "Undo successful.";
+                    setTimeout(() => statusMsg.textContent = '', 2500);
+                    lastDeleted = null;
+                }
+            });
+            searchInput.addEventListener('input', function () {
+                const q = searchInput.value.trim().toLowerCase();
+                filteredPrescriptions = mockUserPrescriptions.filter(rx => rx.medicationName.toLowerCase().includes(q) || rx.dosage.toLowerCase().includes(q));
+                renderTable();
+                updateButtonState();
+            });
+            bookletUpload.addEventListener('change', function () {
+                bookletPreview.innerHTML = '';
+                const file = bookletUpload.files[0];
+                if (file) {
+                    if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        img.style.maxWidth = '180px';
+                        img.style.borderRadius = '1rem';
+                        img.style.marginTop = '1rem';
+                        bookletPreview.appendChild(img);
+                    } else if (file.type === 'application/pdf') {
+                        const pdfIcon = document.createElement('div');
+                        pdfIcon.innerHTML = '<i class="fas fa-file-pdf fa-3x" style="color:#7F53AC"></i><br>PDF uploaded.';
+                        pdfIcon.style.marginTop = '1rem';
+                        bookletPreview.appendChild(pdfIcon);
+                    }
+                }
+            });
+            renderTable();
+            updateButtonState();
+            renderCart();
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar Start -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="index.html" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointment.html">Book appointment</a></li>
+                    <li><a href="payment.html">Payment and Billing</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a class="btn btn-outline btn-signup" href="signup.html" role="button"
+                        aria-label="Sign up button">Sign Up</a>
+                    <a class="btn btn-primary btn-login" href="login.html" role="button"
+                        aria-label="Login button">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Navigation Bar End -->
+    <main id="main">
+        <div class="pharmacy-hero-bg">
+            <div class="pharmacy-bg-shape shape1"></div>
+            <div class="pharmacy-bg-shape shape2"></div>
+            <div class="pharmacy-bg-shape shape3"></div>
+            <div class="pharmacy-bg-shape shape4"></div>
+        </div>
+        <section class="pharmacy-hero">
+            <div class="pharmacy-hero-content">
+                <h1 class="pharmacy-hero-title"><i class="fas fa-pills"></i> Pharmacy & Medication Management</h1>
+                <p class="pharmacy-hero-desc">Easily search, refill, and manage your prescriptions. Upload your medical booklet for faster service and keep your health on track with Summit Care.</p>
+            </div>
+        </section>
+        <div class="pharmacy-main">
+            <!-- Upload Medical Booklet -->
+            <div class="pharmacy-upload-section">
+                <label for="booklet-upload" class="upload-label"><i class="fas fa-file-medical"></i> Upload Medical Booklet (jpg, png, pdf):</label>
+                <input type="file" id="booklet-upload" accept="image/*,.pdf" />
+                <div id="booklet-preview"></div>
+            </div>
+            <!-- Search Bar -->
+            <div class="pharmacy-search-section">
+                <input type="text" id="pharmacy-search" placeholder="Search medication..." />
+            </div>
+            <table class="pharmacy-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Medication</th>
+                        <th>Dosage</th>
+                        <th>Last Filled</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="pharmacy-table-body">
+                    <!-- JS will render rows here -->
+                </tbody>
+            </table>
+            <div class="pharmacy-actions">
+                <button id="request-refill-btn" class="pharmacy-btn" disabled>Add to Cart</button>
+            </div>
+            <div id="pharmacy-status-msg" class="pharmacy-caption"></div>
+            <!-- Cart Section -->
+            <div class="pharmacy-cart-section">
+                <h3><i class="fas fa-shopping-cart"></i> Your Medication Cart</h3>
+                <ul id="pharmacy-cart-list" class="pharmacy-cart-list"></ul>
+                <div class="cart-actions">
+                    <button id="cart-delete-btn" class="pharmacy-btn" disabled>Delete Selected</button>
+                    <button id="cart-undo-btn" class="pharmacy-btn" disabled>Undo Last Delete</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer from index.html -->
+    <footer class="site-footer" role="contentinfo">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Instagram" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="YouTube" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+                    <!-- Contact Information -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Contact Information</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890" aria-label="Call Summit Care">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon emergency"></i>
+                                <div>
+                                    <a href="tel:+11234567891" aria-label="Emergency number">(123) 456-7891</a>
+                                    <span class="contact-label">24/7 Emergency</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <div>
+                                    <a href="mailto:hello@summitcare.com" aria-label="Email Summit Care">hello@summitcare.com</a>
+                                    <span class="contact-label">General Inquiries</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt contact-icon"></i>
+                                <div>
+                                    <span>123 Summit Ave, Suite 400</span>
+                                    <span class="contact-label">Springfield, IL 62701</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Newsletter Signup -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Stay Updated</h4>
+                        <p class="newsletter-description">Get health tips, updates, and exclusive offers delivered to your inbox. <strong>Create an account</strong> to access appointment booking, prescription management, and more.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Enter your email" required aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                        <p class="newsletter-note">We respect your privacy. Unsubscribe at any time. <a href="signup.html" class="auth-link">Create account</a> for full access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">HIPAA Notice</a>
+                        <a href="#" class="legal-link">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    </footer>
+</body>
+</html>

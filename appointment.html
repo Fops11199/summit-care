@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #eaf6fb 0%, #f7fafd 100%);
+            font-family: 'Outfit', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .appointment-main {
+            max-width: 700px;
+            margin: 3rem auto 2rem auto;
+            background: rgba(255,255,255,0.92);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(127,83,172,0.08);
+            padding: 2.5rem 2rem;
+            position: relative;
+        }
+        .appointment-stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2.2rem;
+            background: #eaf6fb;
+            border-radius: 1rem;
+            padding: 0.7rem 0.5rem;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.07);
+        }
+        .stepper-step {
+            flex: 1;
+            text-align: center;
+            font-weight: 600;
+            color: #7F53AC;
+            position: relative;
+            font-size: 1.08rem;
+            opacity: 0.7;
+            transition: color 0.2s, opacity 0.2s;
+        }
+        .stepper-step.active {
+            color: #10B981;
+            opacity: 1;
+            font-size: 1.15rem;
+        }
+        .appointment-step {
+            display: block;
+            margin-bottom: 2.2rem;
+        }
+        .appointment-step.hidden {
+            display: none;
+        }
+        .appointment-step h2 {
+            font-size: 1.35rem;
+            color: #1D4ED8;
+            margin-bottom: 1.1rem;
+            text-align: center;
+        }
+        select, input[type="radio"] {
+            font-size: 1.08rem;
+            margin-bottom: 1.1rem;
+        }
+        select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 0.7rem;
+            border: 1.5px solid #e0e0e0;
+            background: #f7fafd;
+            font-weight: 500;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #222;
+            margin-right: 1.2rem;
+        }
+        .appointment-btn {
+            background: linear-gradient(90deg, #10B981 0%, #1D4ED8 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.08rem;
+            border: none;
+            border-radius: 0.7rem;
+            padding: 0.8rem 1.5rem;
+            margin-top: 0.3rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(127,83,172,0.08);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .appointment-btn:disabled {
+            background: #e0e0e0;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .appointment-btn:hover:not(:disabled) {
+            background: linear-gradient(90deg, #1D4ED8 0%, #10B981 100%);
+            transform: scale(1.03);
+        }
+        .doctor-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .doctor-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.08);
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s, box-shadow 0.2s;
+            min-width: 220px;
+        }
+        .doctor-card.selected {
+            border: 2px solid #10B981;
+            box-shadow: 0 4px 16px rgba(16,185,129,0.12);
+        }
+        .doctor-photo {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #eaf6fb;
+        }
+        .doctor-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .doctor-name {
+            font-weight: 700;
+            color: #1D4ED8;
+            font-size: 1.08rem;
+        }
+        .doctor-specialty {
+            color: #10B981;
+            font-size: 0.98rem;
+        }
+        .any-provider {
+            background: #eaf6fb;
+            color: #1D4ED8;
+            font-weight: 600;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            min-width: 220px;
+            border: 2px dashed #10B981;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .calendar-grid {
+            margin-bottom: 1.2rem;
+        }
+        .calendar-header {
+            font-weight: 700;
+            color: #1D4ED8;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .calendar-days-row, .calendar-row {
+            display: flex;
+            gap: 0.3rem;
+            justify-content: center;
+        }
+        .calendar-day-label {
+            font-weight: 600;
+            color: #7F53AC;
+            width: 2.2rem;
+            text-align: center;
+        }
+        .calendar-cell {
+            width: 2.2rem;
+            height: 2.2rem;
+            background: #f7fafd;
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 2.2rem;
+            font-weight: 500;
+            color: #222;
+            cursor: pointer;
+            margin-bottom: 0.2rem;
+            transition: background 0.18s, color 0.18s;
+        }
+        .calendar-cell.selected {
+            background: #10B981;
+            color: #fff;
+        }
+        .calendar-cell.disabled {
+            background: #e0e0e0;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .time-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .time-slot-btn {
+            background: #eaf6fb;
+            color: #1D4ED8;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 0.7rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border 0.18s;
+        }
+        .time-slot-btn.selected {
+            background: #10B981;
+            color: #fff;
+            border-color: #10B981;
+        }
+        .time-slot-btn:disabled {
+            background: #f3f3f3;
+            color: #aaa;
+            border-color: #eee;
+            cursor: not-allowed;
+        }
+        .summary-details {
+            background: #eaf6fb;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.08rem;
+            color: #222;
+        }
+        .modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(127,83,172,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .modal.hidden {
+            display: none;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 8px 32px rgba(16,185,129,0.13);
+            padding: 2.2rem 2rem;
+            text-align: center;
+            max-width: 350px;
+        }
+        .modal-content h3 {
+            color: #10B981;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 700px) {
+            .appointment-main {
+                max-width: 98vw;
+                padding: 1.2rem 0.3rem;
+            }
+            .doctor-card, .any-provider {
+                min-width: 98vw;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .calendar-cell, .calendar-day-label {
+                width: 1.7rem;
+                height: 1.7rem;
+                line-height: 1.7rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar Start -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+    
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+    
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    
+    
+                    <li><a href="pharmacy.html">Pharmacy</a></li>
+                    <li><a href="payment.html">Billing & Payment</a></li>
+                </ul>
+                <a class="btn btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Navigation Bar End -->
+    <main class="appointment-main">
+        <div class="appointment-stepper">
+            <div class="stepper-step active">Visit Details</div>
+            <div class="stepper-step">Choose Provider</div>
+            <div class="stepper-step">Select Time</div>
+            <div class="stepper-step">Confirm</div>
+        </div>
+        <!-- Step 1: Visit Details -->
+        <section id="step1" class="appointment-step">
+            <h2>What is the reason for your visit?</h2>
+            <select id="serviceSelect" aria-label="Reason for visit">
+                <option value="">Select a service...</option>
+                <option value="general">General Medicine</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="pediatrics">Pediatrics</option>
+            </select>
+            <div class="form-group">
+                <label>Is this for a new problem or a follow-up?</label>
+                <label><input type="radio" name="visitType" value="new"> New Problem</label>
+                <label><input type="radio" name="visitType" value="followup"> Follow-up</label>
+            </div>
+            <button id="step1Next" class="appointment-btn" disabled>Next</button>
+        </section>
+        <!-- Step 2: Choose Provider -->
+        <section id="step2" class="appointment-step hidden">
+            <h2>Choose Your Provider</h2>
+            <div id="doctorGrid" class="doctor-grid"></div>
+            <div class="step-actions">
+                <button id="step2Back" class="appointment-btn">Back</button>
+                <button id="step2Next" class="appointment-btn" disabled>Next</button>
+            </div>
+        </section>
+        <!-- Step 3: Select Time -->
+        <section id="step3" class="appointment-step hidden">
+            <h2>Select Date & Time</h2>
+            <div id="calendarGrid" class="calendar-grid"></div>
+            <div id="timeGrid" class="time-grid"></div>
+            <div class="step-actions">
+                <button id="step3Back" class="appointment-btn">Back</button>
+                <button id="step3Next" class="appointment-btn" disabled>Next</button>
+            </div>
+        </section>
+        <!-- Step 4: Confirm -->
+        <section id="step4" class="appointment-step hidden">
+            <h2>Confirm Your Appointment</h2>
+            <div id="summaryDetails" class="summary-details"></div>
+            <div class="step-actions">
+                <button id="step4Back" class="appointment-btn">Back</button>
+                <button id="confirmBtn" class="appointment-btn">Confirm Appointment</button>
+            </div>
+        </section>
+        <!-- Success Modal -->
+        <div id="successModal" class="modal hidden" role="dialog" aria-modal="true">
+            <div class="modal-content">
+                <h3>Appointment Confirmed!</h3>
+                <p id="modalMsg"></p>
+                <button id="goDashboardBtn" class="appointment-btn">Go to My Dashboard</button>
+            </div>
+        </div>
+    </main><!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-link twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" aria-label="LinkedIn" class="social-link linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube" class="social-link youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+    
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+    
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+    
+                    <!-- Contact Information -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Contact Information</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890" aria-label="Call Summit Care">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon emergency"></i>
+                                <div>
+                                    <a href="tel:+11234567891" aria-label="Emergency number">(123) 456-7891</a>
+                                    <span class="contact-label">24/7 Emergency</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <div>
+                                    <a href="mailto:hello@summitcare.com"
+                                        aria-label="Email Summit Care">hello@summitcare.com</a>
+                                    <span class="contact-label">General Inquiries</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt contact-icon"></i>
+                                <div>
+                                    <span>123 Summit Ave, Suite 400</span>
+                                    <span class="contact-label">Springfield, IL 62701</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Newsletter Signup -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Stay Updated</h4>
+                        <p class="newsletter-description">Get health tips, updates, and exclusive offers delivered to
+                            your inbox. <strong>Create an account</strong> to access appointment booking, prescription
+                            management, and more.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Enter your email" required
+                                    aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="newsletter-note">We respect your privacy. Unsubscribe at any time. <a href="signup.html"
+                                class="auth-link">Create account</a> for full access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">HIPAA Notice</a>
+                        <a href="#" class="legal-link">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+    <noscript>Your browser does not support JavaScript or it is disabled. Some interactive features may not
+        work.</noscript>
+
+
+    <script src="appointment.js"></script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Summit Care Patient Dashboard - Manage your healthcare journey" />
+    <title>Dashboard | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="nav.js"></script>
+    <script defer src="dashboard.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Header / Navigation -->
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="Summit Care Home">
+          <span class="logo-mark" aria-hidden="true">+</span>
+          <span class="logo-text">Summit Care</span>
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-nav" class="site-nav" role="navigation">
+          <ul class="nav-list">
+            <li class="nav-item-dropdown">
+              <a href="index.html" class="nav-link-dropdown">Home</a>
+              <ul class="dropdown-menu">
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#services">Our Services</a></li>
+                <li><a href="index.html#testimonials">Patient Stories</a></li>
+                <li><a href="index.html#contact">Get in Touch</a></li>
+              </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+          <div class="nav-buttons">
+            <a class="btn btn-outline btn-signup" href="signup.html" role="button" aria-label="Sign up button">Sign Up</a>
+            <a class="btn btn-primary btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Dashboard Header -->
+      <section class="dashboard-header">
+        <div class="container">
+          <div class="welcome-section">
+            <div class="welcome-content">
+              <h1 class="welcome-title">Welcome back, <span class="user-first-name">John</span>!</h1>
+              <p class="welcome-subtitle">Here's your health summary for today</p>
+              <div class="last-visit">
+                <i class="fas fa-calendar-check"></i>
+                <span>Last visit: <strong>March 15, 2024</strong></span>
+              </div>
+            </div>
+            <div class="quick-actions">
+              <a href="#appointments" class="btn btn-primary">
+                <i class="fas fa-calendar-plus"></i>
+                Book Appointment
+              </a>
+              <a href="#messages" class="btn btn-outline">
+                <i class="fas fa-envelope"></i>
+                View Messages
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Content -->
+      <section class="dashboard-content">
+        <div class="container">
+          <div class="dashboard-grid">
+            <!-- Health Summary Cards -->
+            <div class="dashboard-section health-summary">
+              <h2 class="section-title">Health Summary</h2>
+              <div class="summary-cards">
+                <div class="summary-card">
+                  <div class="card-icon">
+                    <i class="fas fa-heartbeat"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3>Blood Pressure</h3>
+                    <p class="metric">120/80</p>
+                    <span class="status normal">Normal</span>
+                  </div>
+                </div>
+                
+                <div class="summary-card">
+                  <div class="card-icon">
+                    <i class="fas fa-weight"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3>Weight</h3>
+                    <p class="metric">165 lbs</p>
+                    <span class="status stable">Stable</span>
+                  </div>
+                </div>
+                
+                <div class="summary-card">
+                  <div class="card-icon">
+                    <i class="fas fa-pills"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3>Medications</h3>
+                    <p class="metric">3 Active</p>
+                    <span class="status active">Current</span>
+                  </div>
+                </div>
+                
+                <div class="summary-card">
+                  <div class="card-icon">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3>Next Visit</h3>
+                    <p class="metric">March 28</p>
+                    <span class="status upcoming">Upcoming</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="dashboard-section appointments">
+              <div class="section-header">
+                <h2 class="section-title">Upcoming Appointments</h2>
+                <a href="#appointments" class="view-all">View All</a>
+              </div>
+              <div class="appointment-list">
+                <div class="appointment-item">
+                  <div class="appointment-time">
+                    <div class="date">MAR 28</div>
+                    <div class="time">10:00 AM</div>
+                  </div>
+                  <div class="appointment-details">
+                    <h4>Dr. Sarah Johnson</h4>
+                    <p>Cardiology Consultation</p>
+                    <span class="appointment-type virtual">
+                      <i class="fas fa-video"></i> Virtual Visit
+                    </span>
+                  </div>
+                  <div class="appointment-actions">
+                    <button class="btn btn-sm btn-outline">Reschedule</button>
+                    <button class="btn btn-sm btn-primary">Join Call</button>
+                  </div>
+                </div>
+                
+                <div class="appointment-item">
+                  <div class="appointment-time">
+                    <div class="date">APR 5</div>
+                    <div class="time">2:30 PM</div>
+                  </div>
+                  <div class="appointment-details">
+                    <h4>Dr. Michael Chen</h4>
+                    <p>Annual Physical</p>
+                    <span class="appointment-type in-person">
+                      <i class="fas fa-user-md"></i> In-Person
+                    </span>
+                  </div>
+                  <div class="appointment-actions">
+                    <button class="btn btn-sm btn-outline">Reschedule</button>
+                    <button class="btn btn-sm btn-primary">View Details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Messages -->
+            <div class="dashboard-section messages">
+              <div class="section-header">
+                <h2 class="section-title">Recent Messages</h2>
+                <a href="#messages" class="view-all">View All</a>
+              </div>
+              <div class="message-list">
+                <div class="message-item unread">
+                  <div class="message-avatar">
+                    <i class="fas fa-user-md"></i>
+                  </div>
+                  <div class="message-content">
+                    <div class="message-header">
+                      <h4>Dr. Sarah Johnson</h4>
+                      <span class="message-time">2 hours ago</span>
+                    </div>
+                    <p>Your lab results are ready. Please review them in your portal.</p>
+                  </div>
+                  <div class="message-status">
+                    <span class="unread-indicator"></span>
+                  </div>
+                </div>
+                
+                <div class="message-item">
+                  <div class="message-avatar">
+                    <i class="fas fa-user-nurse"></i>
+                  </div>
+                  <div class="message-content">
+                    <div class="message-header">
+                      <h4>Nurse Maria</h4>
+                      <span class="message-time">1 day ago</span>
+                    </div>
+                    <p>Reminder: Don't forget to take your medication at 8 PM tonight.</p>
+                  </div>
+                </div>
+                
+                <div class="message-item">
+                  <div class="message-avatar">
+                    <i class="fas fa-bell"></i>
+                  </div>
+                  <div class="message-content">
+                    <div class="message-header">
+                      <h4>System Notification</h4>
+                      <span class="message-time">3 days ago</span>
+                    </div>
+                    <p>Your prescription refill has been approved and shipped.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-section quick-actions-section">
+              <h2 class="section-title">Quick Actions</h2>
+              <div class="quick-actions-grid">
+                <a href="#prescriptions" class="quick-action-card">
+                  <i class="fas fa-pills"></i>
+                  <h3>Prescriptions</h3>
+                  <p>Refill medications</p>
+                </a>
+                
+                <a href="#lab-results" class="quick-action-card">
+                  <i class="fas fa-flask"></i>
+                  <h3>Lab Results</h3>
+                  <p>View test results</p>
+                </a>
+                
+                <a href="#medical-records" class="quick-action-card">
+                  <i class="fas fa-file-medical"></i>
+                  <h3>Medical Records</h3>
+                  <p>Access your history</p>
+                </a>
+                
+                <a href="#billing" class="quick-action-card">
+                  <i class="fas fa-credit-card"></i>
+                  <h3>Billing</h3>
+                  <p>Pay bills & insurance</p>
+                </a>
+                
+                <a href="#telemedicine" class="quick-action-card">
+                  <i class="fas fa-video"></i>
+                  <h3>Telemedicine</h3>
+                  <p>Start virtual visit</p>
+                </a>
+                
+                <a href="#support" class="quick-action-card">
+                  <i class="fas fa-headset"></i>
+                  <h3>Support</h3>
+                  <p>Get help</p>
+                </a>
+              </div>
+            </div>
+
+            <!-- Health Tips -->
+            <div class="dashboard-section health-tips">
+              <h2 class="section-title">Today's Health Tip</h2>
+              <div class="tip-card">
+                <div class="tip-icon">
+                  <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="tip-content">
+                  <h3>Stay Hydrated</h3>
+                  <p>Drinking 8 glasses of water daily helps maintain healthy blood pressure and supports kidney function. Try adding lemon or cucumber for flavor!</p>
+                  <div class="tip-tags">
+                    <span class="tag">Hydration</span>
+                    <span class="tag">Wellness</span>
+                    <span class="tag">Prevention</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-section activity">
+              <h2 class="section-title">Recent Activity</h2>
+              <div class="activity-timeline">
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4>Appointment Scheduled</h4>
+                    <p>Cardiology consultation with Dr. Johnson</p>
+                    <span class="activity-time">2 hours ago</span>
+                  </div>
+                </div>
+                
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-pills"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4>Prescription Refilled</h4>
+                    <p>Metformin 500mg - 30 day supply</p>
+                    <span class="activity-time">1 day ago</span>
+                  </div>
+                </div>
+                
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-file-medical"></i>
+                  </div>
+                  <div class="activity-content">
+                    <h4>Lab Results Uploaded</h4>
+                    <p>Blood work results from March 10</p>
+                    <span class="activity-time">3 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main class="dashboard-main">
+      <div class="container">
+        <section class="dashboard-quick-actions">
+          <h2 class="section-title">Quick Actions</h2>
+          <div class="quick-actions-grid">
+            <a href="services.html" class="btn btn-primary btn-large">View Services</a>
+            <a href="appointment.html" class="btn btn-primary btn-large">Book Appointment</a>
+            <a href="payment.html" class="btn btn-primary btn-large">View & Pay Bills</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-main">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-brand">
+              <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+              </a>
+              <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.</p>
+            </div>
+            <div class="footer-section">
+              <h4 class="footer-title">Quick Links</h4>
+              <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#appointments">Appointments</a></li>
+                <li><a href="#prescriptions">Prescriptions</a></li>
+                <li><a href="#support">Support</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4 class="footer-title">Contact</h4>
+              <ul class="footer-links">
+                <li><a href="tel:+11234567890">(123) 456-7890</a></li>
+                <li><a href="mailto:support@summitcare.com">support@summitcare.com</a></li>
+                <li><a href="#emergency">24/7 Emergency</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="footer-bottom-content">
+            <div class="copyright">
+              <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+            </div>
+            <div class="footer-legal">
+              <a href="#" class="legal-link">Privacy Policy</a>
+              <a href="#" class="legal-link">Terms of Service</a>
+              <a href="#" class="legal-link">HIPAA Notice</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <noscript>Your browser does not support JavaScript or it is disabled. Some interactive features may not work.</noscript>
+  </body>
+</html>

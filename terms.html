@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terms of Service | Summit Care</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7fcf9 0%, #eaf6fb 100%);
+        }
+        .terms-hero {
+            background: linear-gradient(90deg, #3aafa9 0%, #0f3460 100%);
+            color: #fff;
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+            border-radius: 0 0 2rem 2rem;
+        }
+        .terms-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .terms-hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        .terms-main {
+            display: flex;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+        .terms-sidebar {
+            min-width: 220px;
+            position: sticky;
+            top: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2rem 1rem;
+            height: fit-content;
+        }
+        .terms-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .terms-sidebar li {
+            margin-bottom: 1.2rem;
+        }
+        .terms-sidebar a {
+            color: #0f3460;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .terms-sidebar a:hover {
+            color: #3aafa9;
+        }
+        .terms-content {
+            flex: 1;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2.5rem 2rem;
+        }
+        .terms-content h2 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: #0f3460;
+        }
+        .terms-content p, .terms-content ul {
+            font-size: 1.05rem;
+            color: #222;
+        }
+        .accordion {
+            margin: 1.5rem 0;
+        }
+        .accordion-section {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .accordion-title {
+            font-weight: 600;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: #0f3460;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .accordion-content {
+            display: none;
+            padding-bottom: 1rem;
+        }
+        .accordion-section.active .accordion-content {
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .terms-main {
+                flex-direction: column;
+            }
+            .terms-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.accordion-title').forEach(function (title) {
+                title.addEventListener('click', function () {
+                    var section = this.parentElement;
+                    section.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <!-- ...existing navbar code... -->
+    </header>
+    <section class="terms-hero">
+        <h1>Terms of Service</h1>
+        <p>Welcome to Summit Care. Please review our terms to understand your rights and responsibilities as a user.</p>
+    </section>
+    <main class="terms-main container">
+        <nav class="terms-sidebar">
+            <ul>
+                <li><a href="#acceptance">Acceptance of Terms</a></li>
+                <li><a href="#user-responsibilities">User Responsibilities</a></li>
+                <li><a href="#privacy">Privacy & Data Protection</a></li>
+                <li><a href="#use-of-services">Use of Services</a></li>
+                <li><a href="#modifications">Modifications</a></li>
+                <li><a href="#disclaimer">Disclaimer</a></li>
+                <li><a href="#limitation">Limitation of Liability</a></li>
+                <li><a href="#governing-law">Governing Law</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="terms-content">
+            <section id="acceptance">
+                <h2>Acceptance of Terms</h2>
+                <p>By accessing or using Summit Care, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree, please do not use our services.</p>
+            </section>
+            <section id="user-responsibilities" class="accordion-section">
+                <div class="accordion-title">User Responsibilities <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Provide accurate and complete information during registration and use.</li>
+                        <li>Maintain confidentiality of your account credentials.</li>
+                        <li>Notify Summit Care of any unauthorized use of your account.</li>
+                        <li>Comply with all applicable laws and regulations.</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="privacy" class="accordion-section">
+                <div class="accordion-title">Privacy & Data Protection <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>Your privacy is important to us. Please review our <a href="privacy.html">Privacy Policy</a> for details on how we collect, use, and protect your information.</p>
+                </div>
+            </section>
+            <section id="use-of-services" class="accordion-section">
+                <div class="accordion-title">Use of Services <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Summit Care services are for personal, non-commercial use only.</li>
+                        <li>Do not misuse, disrupt, or attempt unauthorized access to our systems.</li>
+                        <li>Respect the rights and privacy of other users.</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="modifications" class="accordion-section">
+                <div class="accordion-title">Modifications <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>Summit Care may update these terms at any time. Continued use of the portal means you accept any changes. We will notify users of significant updates.</p>
+                </div>
+            </section>
+            <section id="disclaimer" class="accordion-section">
+                <div class="accordion-title">Disclaimer <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>Summit Care provides healthcare information and services as-is, without warranties of any kind. Always consult a qualified provider for medical advice.</p>
+                </div>
+            </section>
+            <section id="limitation" class="accordion-section">
+                <div class="accordion-title">Limitation of Liability <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>Summit Care is not liable for any damages resulting from use of our portal, except as required by law.</p>
+                </div>
+            </section>
+            <section id="governing-law" class="accordion-section">
+                <div class="accordion-title">Governing Law <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>These terms are governed by the laws of your local jurisdiction and any applicable healthcare regulations.</p>
+                </div>
+            </section>
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>If you have questions about these terms, please <a href="contact.html">contact us</a>.</p>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <!-- ...existing code... -->
+    </footer>
+</body>
+</html>

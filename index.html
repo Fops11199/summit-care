@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Summit Care – Quality Healthcare, Instantly Accessible. Virtual portal prototype with modern, responsive design." />
+    <title>Summit Care | Quality Healthcare, Instantly Accessible</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="nav.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Header / Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="index.html" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointment.html">Book appointment</a></li>
+                    <li><a href="pharmacy.html">Our Pharmacy</a></li>
+                    <li><a href="payment.html">Payment and Billing</a></li>
+
+                </ul>
+                <div class="nav-buttons">
+                    <a class="btn btn-outline btn-signup" href="signup.html" role="button"
+                        aria-label="Sign up button">Sign Up</a>
+                    <a class="btn btn-primary btn-login" href="login.html" role="button"
+                        aria-label="Login button">Login</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero" aria-label="Hero">
+            <div class="hero-background">
+                <div class="hero-bg-image"></div>
+                <canvas class="hero-canvas" id="heroCanvas"></canvas>
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content-wrapper">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-text-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-star badge-icon"></i>
+                                <span>Trusted by 15,000+ Patients</span>
+                            </div>
+
+                            <h1 class="headline">
+                                <span class="headline-line">Quality Healthcare,</span>
+                                <span class="headline-line highlight">Instantly Accessible</span>
+                            </h1>
+
+                            <p class="subhead">
+                                Experience world-class medical care with our board-certified professionals. From virtual
+                                consultations to in-person treatments, we're here to support your health journey 24/7.
+                            </p>
+
+                            <div class="hero-stats">
+                                <div class="stat">
+                                    <span class="stat-number">15,000+</span>
+                                    <span class="stat-label">Patients</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Specialists</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">99.2%</span>
+                                    <span class="stat-label">Satisfaction</span>
+                                </div>
+                            </div>
+
+                            <div class="cta-group">
+                                <a href="appointment.html" class="btn btn-primary btn-large">
+                                    <i class="fas fa-calendar-alt btn-icon"></i>
+                                    Book Your Visit
+                                </a>
+                                <a href="services.html" class="btn btn-outline btn-large">
+                                    <i class="fas fa-search btn-icon"></i>
+                                    Explore Services
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="hero-visual">
+                            <div class="floating-cards">
+                                <div class="floating-card card-1">
+                                    <i class="fas fa-user-md card-icon"></i>
+                                    <div>Expert Doctors</div>
+                                </div>
+                                <div class="floating-card card-2">
+                                    <i class="fas fa-pills card-icon"></i>
+                                    <div>Modern Medicine</div>
+                                </div>
+                                <div class="floating-card card-3">
+                                    <i class="fas fa-hospital card-icon"></i>
+                                    <div>Advanced Care</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll-indicator">
+                <div class="scroll-arrow"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title reveal-up">About Summit Care</h2>
+                    <p class="section-subtitle reveal-up" style="--delay: 0.1s">
+                        Founded in 2018, Summit Care has been at the forefront of healthcare innovation, combining
+                        cutting-edge medical technology with compassionate, patient-centered care.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="bento-item large reveal-up" style="--delay: 0.15s">
+                        <div class="bento-content">
+                            <i class="fas fa-hospital-alt content-icon"></i>
+                            <h3>Patient-Centered Excellence</h3>
+                            <p>We prioritize your unique health journey with personalized care plans, seamless digital
+                                tools, and a dedicated care team that knows you by name. Every decision we make starts
+                                with what's best for you.</p>
+                            <div class="bento-stats">
+                                <div class="mini-stat">
+                                    <span class="mini-number">15,000+</span>
+                                    <span class="mini-label">Patients</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-number">50+</span>
+                                    <span class="mini-label">Specialists</span>
+                                </div>
+                                <div class="mini-stat">
+                                    <span class="mini-number">99.2%</span>
+                                    <span class="mini-label">Satisfaction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-item medium reveal-up" style="--delay: 0.25s">
+                        <div class="bento-content">
+                            <i class="fas fa-user-md content-icon"></i>
+                            <h3>Trusted Medical Experts</h3>
+                            <p>Our team of board-certified clinicians brings decades of combined experience across
+                                specialties. We use evidence-based practices and stay current with the latest medical
+                                advancements.</p>
+                            <div class="expertise-tags">
+                                <span class="tag">Board Certified</span>
+                                <span class="tag">Evidence-Based</span>
+                                <span class="tag">Continuous Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-item medium reveal-up" style="--delay: 0.35s">
+                        <div class="bento-content">
+                            <i class="fas fa-shield-alt content-icon"></i>
+                            <h3>Secure & Confidential Care</h3>
+                            <p>Your privacy and data security are paramount. We implement enterprise-grade security
+                                measures, HIPAA compliance protocols, and transparent privacy policies.</p>
+                            <div class="certifications">
+                                <span class="cert">HIPAA Compliant</span>
+                                <span class="cert">SOC 2 Type II</span>
+                                <span class="cert">GDPR Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-item small reveal-up" style="--delay: 0.45s">
+                        <div class="bento-content">
+                            <i class="fas fa-globe content-icon"></i>
+                            <h3>Global Standards</h3>
+                            <p>Meeting international healthcare standards with world-class facilities and protocols.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-item small reveal-up" style="--delay: 0.55s">
+                        <div class="bento-content">
+                            <i class="fas fa-mobile-alt content-icon"></i>
+                            <h3>Digital First</h3>
+                            <p>Modern technology for seamless patient experience and care management.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-item small reveal-up" style="--delay: 0.65s">
+                        <div class="bento-content">
+                            <i class="fas fa-robot content-icon"></i>
+                            <h3>AI Enhanced</h3>
+                            <p>Artificial intelligence supporting diagnosis and treatment planning.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-item small reveal-up" style="--delay: 0.75s">
+                        <div class="bento-content">
+                            <i class="fas fa-laptop content-icon"></i>
+                            <h3>Smart Systems</h3>
+                            <p>Integrated healthcare systems for better coordination and outcomes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Preview -->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title reveal-up">Our Core Services</h2>
+                    <p class="section-subtitle reveal-up" style="--delay: 0.1s">Comprehensive healthcare solutions
+                        designed to meet your needs at every stage of life, delivered with the highest standards of
+                        medical excellence.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card reveal-up" style="--delay: 0.15s">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=80"
+                                alt="General practitioner holding a stethoscope" loading="lazy" />
+                            <div class="service-overlay">
+                                <i class="fas fa-stethoscope service-icon"></i>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Primary Care & Wellness</h3>
+                            <p>Comprehensive health assessments, preventive care, chronic disease management, and
+                                same-day consultations. Our primary care team focuses on building lasting relationships
+                                and proactive health strategies.</p>
+                            <ul class="service-features">
+                                <li>Annual physicals & wellness exams</li>
+                                <li>Chronic condition management</li>
+                                <li>Preventive screenings</li>
+                                <li>Immunizations & vaccinations</li>
+                            </ul>
+                            <a href="services.html" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal-up" style="--delay: 0.25s">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80"
+                                alt="Pediatric care with doctor and child" loading="lazy" />
+                            <div class="service-overlay">
+                                <i class="fas fa-baby service-icon"></i>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Pediatric Care</h3>
+                            <p>Gentle, family-friendly care for infants, children, and adolescents. Our pediatric
+                                specialists create a comfortable environment where children feel safe and parents feel
+                                confident in their child's care.</p>
+                            <ul class="service-features">
+                                <li>Well-child visits & development tracking</li>
+                                <li>Acute illness treatment</li>
+                                <li>Behavioral health support</li>
+                                <li>Family education & guidance</li>
+                            </ul>
+                            <a href="services.html" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal-up" style="--delay: 0.35s">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=1200&q=80"
+                                alt="Cardiology heart monitoring equipment" loading="lazy" />
+                            <div class="service-overlay">
+                                <i class="fas fa-heartbeat service-icon"></i>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Cardiology & Heart Health</h3>
+                            <p>Advanced cardiac care with state-of-the-art diagnostic technology and personalized
+                                treatment plans. Our cardiology team specializes in prevention, early detection, and
+                                comprehensive management of heart conditions.</p>
+                            <ul class="service-features">
+                                <li>EKG & stress testing</li>
+                                <li>Echocardiograms</li>
+                                <li>Cardiac rehabilitation</li>
+                                <li>Preventive cardiology</li>
+                            </ul>
+                            <a href="services.html" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal-up" style="--delay: 0.45s">
+                        <div class="service-image-container">
+                            <img src="https://images.unsplash.com/photo-1584467735871-81b0f9c8e9a8?auto=format&fit=crop&w=1200&q=80"
+                                alt="Telemedicine doctor video consultation" loading="lazy" />
+                            <div class="service-overlay">
+                                <i class="fas fa-video service-icon"></i>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Telemedicine & Virtual Care</h3>
+                            <p>Convenient, secure healthcare from anywhere. Our virtual platform connects you with
+                                healthcare providers for consultations, follow-ups, and ongoing care management without
+                                leaving your home.</p>
+                            <ul class="service-features">
+                                <li>Video consultations</li>
+                                <li>Remote monitoring</li>
+                                <li>Prescription management</li>
+                                <li>24/7 urgent care access</li>
+                            </ul>
+                            <a href="services.html" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="services-cta reveal-up" style="--delay: 0.55s">
+                    <h3>Ready to Experience Better Healthcare?</h3>
+                    <p>Join thousands of patients who trust Summit Care with their health journey.</p>
+                    <a href="appointment.html" class="btn btn-primary">Schedule Your First Visit</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Preview (Carousel) -->
+        <section id="testimonials" class="section testimonials" aria-label="Patient Testimonials">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title reveal-up">What Our Patients Say</h2>
+                    <p class="section-subtitle reveal-up" style="--delay: 0.1s">Real stories from real patients who have
+                        experienced the Summit Care difference.</p>
+                </div>
+
+                <div class="carousel" aria-roledescription="carousel">
+                    <div class="carousel-track" role="list">
+                        <article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="1 of 4">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <blockquote>
+                                <p>"The video visit was effortless and the doctor was incredibly attentive. I felt like
+                                    I was in the room with them. The follow-up care was seamless, and I appreciated how
+                                    they remembered my previous concerns."</p>
+                                <footer>
+                                    <cite>— Jamie L., Primary Care Patient</cite>
+                                    <span class="patient-type">Virtual Care</span>
+                                </footer>
+                            </blockquote>
+                        </article>
+                        <article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="2 of 4">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <blockquote>
+                                <p>"Booking an appointment took minutes, not days. The staff was warm and professional,
+                                    and I felt heard and cared for throughout my entire visit. This is how healthcare
+                                    should feel."</p>
+                                <footer>
+                                    <cite>— Priya S., Pediatric Care Parent</cite>
+                                    <span class="patient-type">In-Person Care</span>
+                                </footer>
+                            </blockquote>
+                        </article>
+                        <article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="3 of 4">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <blockquote>
+                                <p>"Secure, convenient, and professional from start to finish. The online portal made
+                                    managing my prescriptions and appointments so easy. I've never felt more in control
+                                    of my health."</p>
+                                <footer>
+                                    <cite>— Marcus R., Cardiology Patient</cite>
+                                    <span class="patient-type">Specialty Care</span>
+                                </footer>
+                            </blockquote>
+                        </article>
+                        <article class="testimonial-card" role="group" aria-roledescription="slide" aria-label="4 of 4">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <blockquote>
+                                <p>"As a busy parent, the flexibility of Summit Care has been a game-changer. I can get
+                                    quality care for my family without disrupting our schedule. The pediatric team is
+                                    exceptional."</p>
+                                <footer>
+                                    <cite>— Sarah T., Family Care</cite>
+                                    <span class="patient-type">Family Medicine</span>
+                                </footer>
+                            </blockquote>
+                        </article>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" aria-label="Next testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots" role="tablist" aria-label="Testimonial slides"></div>
+                </div>
+
+                <div class="testimonials-cta reveal-up" style="--delay: 0.2s">
+                    <p>Join our community of satisfied patients</p>
+                    <a href="testimonials.html" class="btn btn-outline">Read More Stories</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title reveal-up">Get in Touch</h2>
+                    <p class="section-subtitle reveal-up" style="--delay: 0.1s">Questions, feedback, or ready to start
+                        your health journey? We're here to help and would love to hear from you.</p>
+                </div>
+
+                <div class="contact-bento-grid">
+                    <div class="contact-form-container reveal-up" style="--delay: 0.15s">
+                        <form class="contact-form" aria-label="Contact form" novalidate>
+                            <div class="form-header">
+                                <h3>Send us a Message</h3>
+                                <p>We'll get back to you within 24 hours</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label for="name">Full Name *</label>
+                                    <input id="name" name="name" type="text" autocomplete="name"
+                                        placeholder="Enter your full name" required />
+                                    <span class="error" aria-live="polite"></span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="email">Email Address *</label>
+                                    <input id="email" name="email" type="email" autocomplete="email"
+                                        placeholder="your.email@example.com" required />
+                                    <span class="error" aria-live="polite"></span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="phone">Phone Number</label>
+                                    <input id="phone" name="phone" type="tel" autocomplete="tel"
+                                        placeholder="(123) 456-7890" />
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="subject">Subject</label>
+                                    <select id="subject" name="subject">
+                                        <option value="">Select a topic</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="appointment">Appointment Question</option>
+                                        <option value="billing">Billing & Insurance</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-field full-width">
+                                    <label for="message">Message *</label>
+                                    <textarea id="message" name="message" rows="5"
+                                        placeholder="Tell us how we can help you today..." required></textarea>
+                                    <span class="error" aria-live="polite"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane btn-icon"></i>
+                                Send Message
+                            </button>
+                            <p class="form-status" role="status" aria-live="polite"></p>
+                        </form>
+                    </div>
+
+                    <div class="contact-info-grid reveal-up" style="--delay: 0.25s">
+                        <div class="info-card main-info">
+                            <div class="contact-method">
+                                <div class="method-content">
+                                    <h3>Contact Summit Care</h3>
+                                    <p>We're here to help with all your healthcare needs. Reach out to us through any of
+                                        the methods below.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="contact-method">
+                                <i class="fas fa-map-marker-alt method-icon"></i>
+                                <div class="method-content">
+                                    <strong>Main Office</strong>
+                                    <p>123 Summit Ave, Suite 400<br>Springfield, IL 62701</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="contact-method">
+                                <i class="fas fa-phone method-icon"></i>
+                                <div class="method-content">
+                                    <strong>Phone</strong>
+                                    <p><a href="tel:+11234567890">(123) 456-7890</a><br>24/7 Emergency: (123) 456-7891
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope method-icon"></i>
+                                <div class="method-content">
+                                    <strong>Email</strong>
+                                    <p><a href="mailto:hello@summitcare.com">hello@summitcare.com</a><br><a
+                                            href="mailto:support@summitcare.com">support@summitcare.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card hours-info">
+                            <div class="contact-method">
+                                <i class="fas fa-clock method-icon"></i>
+                                <div class="method-content">
+                                    <strong>Office Hours</strong>
+                                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM<br>Sunday:
+                                        Closed (24/7 Virtual Care Available)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card image-card">
+                            <img class="contact-image"
+                                src="https://images.unsplash.com/photo-1579154204601-01588f351e12?auto=format&fit=crop&w=1200&q=80"
+                                alt="Friendly medical team" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action for Signup -->
+                <div class="contact-cta reveal-up" style="--delay: 0.35s">
+                    <div class="cta-content">
+                        <h3>Ready to Start Your Health Journey?</h3>
+                        <p>Create your account today and get access to our comprehensive healthcare services,
+                            appointment booking, and patient portal.</p>
+                        <div class="cta-buttons">
+                            <a href="signup.html" class="btn btn-primary btn-large">
+                                <i class="fas fa-user-plus btn-icon"></i>
+                                Create Account
+                            </a>
+                            <a href="login.html" class="btn btn-outline btn-large">
+                                <i class="fas fa-sign-in-alt btn-icon"></i>
+                                Already Have an Account?
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-link twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" aria-label="LinkedIn" class="social-link linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube" class="social-link youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Contact Information</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890" aria-label="Call Summit Care">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon emergency"></i>
+                                <div>
+                                    <a href="tel:+11234567891" aria-label="Emergency number">(123) 456-7891</a>
+                                    <span class="contact-label">24/7 Emergency</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <div>
+                                    <a href="mailto:hello@summitcare.com"
+                                        aria-label="Email Summit Care">hello@summitcare.com</a>
+                                    <span class="contact-label">General Inquiries</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt contact-icon"></i>
+                                <div>
+                                    <span>123 Summit Ave, Suite 400</span>
+                                    <span class="contact-label">Springfield, IL 62701</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Stay Updated</h4>
+                        <p class="newsletter-description">Get health tips, updates, and exclusive offers delivered to
+                            your inbox. <strong>Create an account</strong> to access appointment booking, prescription
+                            management, and more.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Enter your email" required
+                                    aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="newsletter-note">We respect your privacy. Unsubscribe at any time. <a
+                                href="signup.html" class="auth-link">Create account</a> for full access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">HIPAA Notice</a>
+                        <a href="#" class="legal-link">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+    <noscript>Your browser does not support JavaScript or it is disabled. Some interactive features may not
+        work.</noscript>
+</body>
+
+</html>

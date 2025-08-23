@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy | Summit Care</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #eaf6fb 0%, #f7fcf9 100%);
+        }
+        .privacy-hero {
+            background: linear-gradient(90deg, #0f3460 0%, #3aafa9 100%);
+            color: #fff;
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+            border-radius: 0 0 2rem 2rem;
+        }
+        .privacy-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .privacy-hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        .privacy-main {
+            display: flex;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+        .privacy-sidebar {
+            min-width: 220px;
+            position: sticky;
+            top: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2rem 1rem;
+            height: fit-content;
+        }
+        .privacy-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .privacy-sidebar li {
+            margin-bottom: 1.2rem;
+        }
+        .privacy-sidebar a {
+            color: #0f3460;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .privacy-sidebar a:hover {
+            color: #3aafa9;
+        }
+        .privacy-content {
+            flex: 1;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2.5rem 2rem;
+        }
+        .privacy-content h2 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: #0f3460;
+        }
+        .privacy-content p, .privacy-content ul {
+            font-size: 1.05rem;
+            color: #222;
+        }
+        .privacy-rights-cards {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .privacy-right-card {
+            background: #eaf6fb;
+            border: 1px solid #3aafa9;
+            border-radius: 0.75rem;
+            padding: 1.2rem 1rem;
+            flex: 1 1 220px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .privacy-right-card i {
+            font-size: 2rem;
+            color: #0f3460;
+            margin-bottom: 0.5rem;
+        }
+        .accordion {
+            margin: 1.5rem 0;
+        }
+        .accordion-section {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .accordion-title {
+            font-weight: 600;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: #0f3460;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .accordion-content {
+            display: none;
+            padding-bottom: 1rem;
+        }
+        .accordion-section.active .accordion-content {
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .privacy-main {
+                flex-direction: column;
+            }
+            .privacy-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.accordion-title').forEach(function (title) {
+                title.addEventListener('click', function () {
+                    var section = this.parentElement;
+                    section.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <!-- ...existing navbar code... -->
+    </header>
+    <section class="privacy-hero">
+        <h1>Your Privacy, Our Priority</h1>
+        <p>At Summit Care, safeguarding your personal and medical information is at the core of our values.</p>
+    </section>
+    <main class="privacy-main container">
+        <nav class="privacy-sidebar">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#information-we-collect">Information We Collect</a></li>
+                <li><a href="#how-we-use-your-information">How We Use Your Information</a></li>
+                <li><a href="#data-sharing-disclosure">Data Sharing & Disclosure</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#cookies-tracking">Cookies & Tracking</a></li>
+                <li><a href="#data-security">Data Security</a></li>
+                <li><a href="#third-party-links">Third-Party Links</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="privacy-content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>Summit Care complies with all applicable healthcare data protection laws, including HIPAA (for the U.S.), GDPR (for EU residents), and local data governance regulations. We are committed to protecting your privacy and ensuring your information is handled with the highest standards of security and transparency.</p>
+            </section>
+            <section id="information-we-collect" class="accordion-section">
+                <div class="accordion-title">Information We Collect <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Personal details (name, contact, date of birth)</li>
+                        <li>Medical history & patient records</li>
+                        <li>Insurance and billing information</li>
+                        <li>Technical data (IP address, device type, browser)</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="how-we-use-your-information" class="accordion-section">
+                <div class="accordion-title">How We Use Your Information <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Delivering healthcare services</li>
+                        <li>Appointment scheduling & reminders</li>
+                        <li>Billing & insurance processing</li>
+                        <li>Improving patient care through analytics</li>
+                        <li>Communicating important updates</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="data-sharing-disclosure" class="accordion-section">
+                <div class="accordion-title">Data Sharing & Disclosure <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Shared only with authorized healthcare providers</li>
+                        <li>Insurance partners (with your consent)</li>
+                        <li>Legal obligations (e.g., court orders, regulatory requests)</li>
+                        <li>Never sold to third parties</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="your-rights">
+                <h2>Your Rights</h2>
+                <div class="privacy-rights-cards">
+                    <div class="privacy-right-card">
+                        <i class="fas fa-file-medical"></i>
+                        <strong>Request Records</strong>
+                        <p>Request a copy of your medical records at any time.</p>
+                    </div>
+                    <div class="privacy-right-card">
+                        <i class="fas fa-user-edit"></i>
+                        <strong>Update Information</strong>
+                        <p>Correct or update your personal details.</p>
+                    </div>
+                    <div class="privacy-right-card">
+                        <i class="fas fa-user-lock"></i>
+                        <strong>Withdraw Consent</strong>
+                        <p>Withdraw your consent for data processing.</p>
+                    </div>
+                    <div class="privacy-right-card">
+                        <i class="fas fa-trash-alt"></i>
+                        <strong>Delete Account/Data</strong>
+                        <p>Request deletion of your account and personal data.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="cookies-tracking" class="accordion-section">
+                <div class="accordion-title">Cookies & Tracking <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>We use cookies and similar technologies to enhance your experience, analyze usage, and support secure access to the patient portal. You can manage your cookie preferences at any time.</p>
+                    <a href="#cookie-settings" class="btn btn-outline">Manage Cookie Preferences</a>
+                </div>
+            </section>
+            <section id="data-security" class="accordion-section">
+                <div class="accordion-title">Data Security <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Encryption (in transit and at rest)</li>
+                        <li>Strict access controls for staff</li>
+                        <li>Regular security audits and compliance checks</li>
+                        <li>Incident response protocols</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="third-party-links" class="accordion-section">
+                <div class="accordion-title">Third-Party Links <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>Our privacy policy does not cover external sites. Please review their policies before sharing information.</p>
+                    <ul>
+                        <li><a href="https://www.who.int" target="_blank">World Health Organization (WHO)</a></li>
+                        <li><a href="https://www.hhs.gov/hipaa/index.html" target="_blank">HIPAA Overview (HHS.gov)</a></li>
+                        <li><a href="https://gdpr-info.eu" target="_blank">GDPR Regulation (EU)</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section id="contact-us">
+                <h2>Contact Us</h2>
+                <p>If you have questions or concerns about your privacy, please contact our Privacy Officer:</p>
+                <ul>
+                    <li>Email: <a href="mailto:privacy@summitcare.com">privacy@summitcare.com</a></li>
+                    <li>Phone: +1-800-XXX-XXXX</li>
+                    <li><a href="#privacy-request-form" class="btn btn-primary">Submit a Privacy Request Form</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <!-- ...existing code... -->
+    </footer>
+</body>
+</html>

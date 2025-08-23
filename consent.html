@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Consent to Treat | Summit Care</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7fcf9 0%, #eaf6fb 100%);
+        }
+        .consent-hero {
+            background: linear-gradient(90deg, #0f3460 0%, #3aafa9 100%);
+            color: #fff;
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+            border-radius: 0 0 2rem 2rem;
+        }
+        .consent-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .consent-hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        .consent-main {
+            display: flex;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+        .consent-sidebar {
+            min-width: 220px;
+            position: sticky;
+            top: 2rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2rem 1rem;
+            height: fit-content;
+        }
+        .consent-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .consent-sidebar li {
+            margin-bottom: 1.2rem;
+        }
+        .consent-sidebar a {
+            color: #0f3460;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .consent-sidebar a:hover {
+            color: #3aafa9;
+        }
+        .consent-content {
+            flex: 1;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            padding: 2.5rem 2rem;
+        }
+        .consent-content h2 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: #0f3460;
+        }
+        .consent-content p, .consent-content ul {
+            font-size: 1.05rem;
+            color: #222;
+        }
+        .accordion {
+            margin: 1.5rem 0;
+        }
+        .accordion-section {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .accordion-title {
+            font-weight: 600;
+            cursor: pointer;
+            padding: 1rem 0;
+            color: #0f3460;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .accordion-content {
+            display: none;
+            padding-bottom: 1rem;
+        }
+        .accordion-section.active .accordion-content {
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .consent-main {
+                flex-direction: column;
+            }
+            .consent-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.accordion-title').forEach(function (title) {
+                title.addEventListener('click', function () {
+                    var section = this.parentElement;
+                    section.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <!-- ...existing navbar code... -->
+    </header>
+    <section class="consent-hero">
+        <h1>Consent to Treat</h1>
+        <p>By using Summit Care, you consent to receive medical care and treatment from our providers as described below.</p>
+    </section>
+    <main class="consent-main container">
+        <nav class="consent-sidebar">
+            <ul>
+                <li><a href="#medical-services">Medical Services</a></li>
+                <li><a href="#telemedicine">Telemedicine</a></li>
+                <li><a href="#risks-benefits">Risks & Benefits</a></li>
+                <li><a href="#patient-rights">Patient Rights</a></li>
+                <li><a href="#withdraw-consent">Withdraw Consent</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="consent-content">
+            <section id="medical-services">
+                <h2>Medical Services</h2>
+                <p>You authorize Summit Care and its providers to deliver healthcare services as needed, including diagnosis, treatment, and follow-up care. All care is provided by licensed professionals in accordance with best practices and legal requirements.</p>
+            </section>
+            <section id="telemedicine" class="accordion-section">
+                <div class="accordion-title">Telemedicine <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>You consent to receive care via telemedicine when appropriate. Telemedicine involves the use of electronic communications to enable healthcare providers to evaluate, diagnose, and treat patients remotely.</p>
+                    <ul>
+                        <li>Video consultations</li>
+                        <li>Remote monitoring</li>
+                        <li>Secure messaging</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="risks-benefits" class="accordion-section">
+                <div class="accordion-title">Risks & Benefits <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Benefits: Convenience, access to specialists, timely care</li>
+                        <li>Risks: Technical failures, privacy concerns, limitations of remote assessment</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="patient-rights">
+                <h2>Patient Rights</h2>
+                <ul>
+                    <li>Right to ask questions and receive clear answers</li>
+                    <li>Right to refuse or withdraw consent at any time</li>
+                    <li>Right to privacy and confidentiality</li>
+                    <li>Right to access your medical records</li>
+                </ul>
+            </section>
+            <section id="withdraw-consent" class="accordion-section">
+                <div class="accordion-title">Withdraw Consent <i class="fas fa-chevron-down"></i></div>
+                <div class="accordion-content">
+                    <p>You may withdraw your consent for treatment at any time by notifying your provider or contacting Summit Care. Withdrawal of consent may affect your ability to receive certain services.</p>
+                </div>
+            </section>
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>If you have questions about this consent, please <a href="contact.html">contact us</a>.</p>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <!-- ...existing code... -->
+    </footer>
+</body>
+</html>
