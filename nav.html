@@ -1,35 +1,58 @@
-<!-- Navigation Component for Summit Care -->
-<header class="site-header" role="banner">
-    <div class="container header-inner">
-        <a class="logo" href="index.html" aria-label="Summit Care Home">
-            <span class="logo-mark" aria-hidden="true">+</span>
-            <span class="logo-text">Summit Care</span>
-        </a>
+<!-- Global Navigation Component V2 -->
+<header class="site-header" id="site-header" role="banner">
+    <!-- Top Bar -->
+    <div class="header-top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <a href="tel:+11234567890"><i class="fas fa-phone-alt"></i> (123) 456-7890</a>
+                <a href="mailto:hello@summitcare.com"><i class="fas fa-envelope"></i> hello@summitcare.com</a>
+            </div>
+            <div class="top-bar-right">
+                <div class="top-social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="top-auth-links">
+                    <a href="login.html"><i class="fas fa-user-circle"></i> Patient Portal</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-        </button>
+    <!-- Main Navigation Bar -->
+    <div class="header-main-bar">
+        <div class="container main-bar-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
 
-        <nav id="site-nav" class="site-nav" role="navigation">
-            <ul class="nav-list">
-                <li class="nav-item-dropdown">
-                    <a href="#" class="nav-link-dropdown">Home</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#services">Our Services</a></li>
-                        <li><a href="index.html#testimonials">Patient Stories</a></li>
-                        <li><a href="index.html#contact">Get in Touch</a></li>
-                    </ul>
-                </li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="appointment.html">Book Appointment</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="pharmacy.html">Pharmacy</a></li>
-                <li><a href="payment.html">Billing & Payment</a></li>
-            </ul>
-            <a class="btn btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
-        </nav>
+            <nav id="site-nav" class="site-nav" role="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item-dropdown">
+                        <a href="index.html" class="nav-link-dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#testimonials">Patient Stories</a></li>
+                            <li><a href="index.html#contact">Get in Touch</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pharmacy.html">Pharmacy</a></li>
+                    <li><a href="billing.html">Billing</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn btn-primary btn-pill" href="appointment.html">Book Appointment</a>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
     </div>
 </header>

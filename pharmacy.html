@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Manage your prescriptions, request refills, and access pharmacy services at Summit Care.">
     <title>Pharmacy | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <style>
         body {
-            background: linear-gradient(120deg, #eaf6fb 0%, #f7fafd 100%);
+            background: var(--color-bg-alt);
             min-height: 100vh;
             margin: 0;
-            font-family: 'Outfit', Arial, sans-serif;
+            font-family: 'Outfit', sans-serif;
         }
         .pharmacy-main {
             max-width: 900px;
-            margin: 3rem auto 2rem auto;
-            background: rgba(255,255,255,0.85);
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(127,83,172,0.08);
+            margin: 2rem auto;
+            background: var(--color-bg);
+            border-radius: var(--radius-3xl);
+            box-shadow: var(--shadow-xl);
             padding: 2.5rem 2rem;
         }
         .pharmacy-title {
             font-size: 2rem;
             font-weight: 700;
-            color: #1D4ED8;
+            color: var(--color-primary);
             margin-bottom: 1.2rem;
             text-align: center;
         }
@@ -34,229 +38,164 @@
             margin-bottom: 2rem;
         }
         .pharmacy-table th, .pharmacy-table td {
-            padding: 0.85rem 0.7rem;
+            padding: 1rem 0.9rem;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--color-border);
         }
         .pharmacy-table th {
-            background: #f7fafd;
-            color: #10B981;
+            background: var(--color-bg-alt);
+            color: var(--color-accent);
             font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-        .pharmacy-table td.status {
-            font-weight: 600;
-        }
-        .status-refill {
-            color: #10B981;
-        }
-        .status-request {
-            color: #7F53AC;
-        }
-        .status-pickup {
-            color: #1D4ED8;
-        }
-        .status-unavailable {
-            color: #d32f2f;
-        }
-        .pharmacy-actions {
-            text-align: right;
-            margin-top: 0.5rem;
-        }
+        .pharmacy-table td.status { font-weight: 600; }
+        .status-refill { color: var(--color-accent); }
+        .status-request { color: #7c3aed; }
+        .status-pickup { color: var(--color-primary); }
+        .status-unavailable { color: #dc2626; }
+        .pharmacy-actions { text-align: right; margin-top: 0.5rem; }
         .pharmacy-btn, .add-cart-btn {
-            background: #f7fafd;
-            color: #1D4ED8;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 0.4rem;
-            padding: 0.6rem 1.2rem;
+            background: var(--color-bg-alt);
+            color: var(--color-primary);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-full);
+            padding: 0.6rem 1.4rem;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: none;
-            transition: background 0.18s, color 0.18s, border 0.18s;
+            transition: all 0.3s ease;
         }
         .pharmacy-btn:disabled, .add-cart-btn:disabled {
-            background: #f3f3f3;
-            color: #aaa;
-            border-color: #eee;
+            opacity: 0.5;
             cursor: not-allowed;
         }
-        .pharmacy-btn:hover:not(:disabled), .add-cart-btn:hover:not(:disabled),
-        .pharmacy-btn:focus:not(:disabled), .add-cart-btn:focus:not(:disabled) {
-            background: #eaf6fb;
-            color: #10B981;
-            border-color: #10B981;
-            outline: none;
+        .pharmacy-btn:hover:not(:disabled), .add-cart-btn:hover:not(:disabled) {
+            background: var(--color-primary);
+            color: #fff;
+            border-color: var(--color-primary);
         }
-        .add-cart-btn { display: none; } /* Hide per-row add buttons for minimalism */
+        .add-cart-btn { display: none; }
         .pharmacy-caption {
             font-size: 1rem;
-            color: #222;
+            color: var(--color-text-muted);
             margin-bottom: 1.5rem;
             text-align: center;
         }
         @media (max-width: 600px) {
-            .pharmacy-main {
-                padding: 1.2rem 0.5rem;
-            }
-            .pharmacy-title {
-                font-size: 1.3rem;
-            }
-            .pharmacy-table th, .pharmacy-table td {
-                padding: 0.5rem 0.3rem;
-                font-size: 0.95rem;
-            }
+            .pharmacy-main { padding: 1.2rem 0.5rem; }
+            .pharmacy-title { font-size: 1.3rem; }
+            .pharmacy-table th, .pharmacy-table td { padding: 0.5rem 0.3rem; font-size: 0.95rem; }
         }
         .pharmacy-cards-row {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             justify-content: center;
             margin-bottom: 2.5rem;
+            flex-wrap: wrap;
         }
         .pharmacy-card {
-            background: #fff;
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(127,83,172,0.08);
-            padding: 1rem 1rem 0.5rem 1rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 180px;
-            transition: box-shadow 0.2s, transform 0.2s;
+            transition: all 0.3s ease;
+            border: 1px solid var(--color-border);
         }
+        .pharmacy-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
         .pharmacy-card img {
             width: 150px;
             height: 110px;
             object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 0.7rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 0.8rem;
         }
         .pharmacy-card span {
-            font-size: 1.15rem;
-            color: #10B981;
+            font-size: 1rem;
+            color: var(--color-accent);
             font-weight: 700;
         }
         .pharmacy-upload-section {
             margin-bottom: 2rem;
             text-align: center;
+            padding: 1.5rem;
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-xl);
+            border: 2px dashed var(--color-border);
         }
         .upload-label {
             font-weight: 600;
-            color: #1D4ED8;
-            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+            margin-bottom: 0.7rem;
             display: block;
         }
-        #booklet-upload {
-            margin-top: 0.5rem;
-        }
-        #booklet-preview img {
-            box-shadow: 0 2px 8px rgba(127,83,172,0.08);
-        }
+        #booklet-upload { margin-top: 0.5rem; }
+        #booklet-preview img { box-shadow: var(--shadow-sm); }
         .pharmacy-search-section {
             margin-bottom: 1.5rem;
             text-align: right;
         }
         #pharmacy-search {
-            padding: 0.7rem 1.2rem;
-            border-radius: 1rem;
-            border: 1.5px solid #e0e0e0;
-            font-size: 1.15rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--color-border);
+            font-size: 1rem;
             width: 320px;
             max-width: 100%;
+            font-family: inherit;
+            transition: all 0.3s ease;
         }
-        .pharmacy-table th, .pharmacy-table td {
-            font-size: 1.08rem;
+        #pharmacy-search:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(15,23,42,0.1);
         }
+        .pharmacy-table th, .pharmacy-table td { font-size: 1rem; }
         .pharmacy-cart-section {
             margin-top: 2.5rem;
-            background: #f7fafd;
-            border-radius: 1.2rem;
-            box-shadow: 0 2px 8px rgba(127,83,172,0.08);
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--color-border);
             padding: 1.5rem;
         }
-        .pharmacy-cart-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.2rem 0;
-        }
+        .pharmacy-cart-section h3 { color: var(--color-primary); margin-bottom: 1rem; }
+        .pharmacy-cart-list { list-style: none; padding: 0; margin: 0 0 1.2rem 0; }
         .pharmacy-cart-list li {
-            background: #fff;
-            border-radius: 0.7rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
             margin-bottom: 0.7rem;
-            padding: 0.7rem 1rem;
-            box-shadow: 0 2px 8px rgba(16,185,129,0.08);
+            padding: 0.8rem 1.2rem;
+            box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
             gap: 1rem;
-            font-size: 1.08rem;
+            font-size: 1rem;
+            border: 1px solid var(--color-border);
         }
         .cart-date {
-            color: #7F53AC;
-            font-size: 0.98rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
             margin-left: auto;
         }
-        .cart-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
+        .cart-actions { display: flex; gap: 1rem; justify-content: flex-end; }
         @media (max-width: 900px) {
-            .pharmacy-cards-row {
-                gap: 1rem;
-            }
-            .pharmacy-card {
-                width: 110px;
-                padding: 0.7rem 0.3rem 0.2rem 0.3rem;
-            }
-            .pharmacy-card img {
-                width: 80px;
-                height: 60px;
-            }
-            #pharmacy-search {
-                width: 100%;
-            }
+            .pharmacy-cards-row { gap: 1rem; }
+            .pharmacy-card { width: 130px; }
+            .pharmacy-card img { width: 100px; height: 75px; }
+            #pharmacy-search { width: 100%; }
         }
         .pharmacy-hero-bg {
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 520px;
-            background: linear-gradient(120deg, rgba(202,255,230,0.18) 0%, rgba(230,255,245,0.12) 100%), url('https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 460px;
+            background: linear-gradient(120deg, rgba(15,23,42,0.06) 0%, rgba(16,185,129,0.05) 100%);
             z-index: 0;
-            opacity: 0.32;
             overflow: hidden;
-        }
-        .pharmacy-bg-shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.22;
-            animation: fall-shape 7s linear infinite;
-        }
-        .pharmacy-bg-shape.shape1 {
-            width: 54px; height: 54px;
-            left: 12%; top: -60px;
-            background: #b6f5d8;
-            animation-delay: 0s;
-        }
-        .pharmacy-bg-shape.shape2 {
-            width: 38px; height: 38px;
-            left: 70%; top: -40px;
-            background: #a3e9c7;
-            animation-delay: 2s;
-        }
-        .pharmacy-bg-shape.shape3 {
-            width: 24px; height: 24px;
-            left: 40%; top: -30px;
-            background: #d0fbe7;
-            animation-delay: 1.2s;
-        }
-        .pharmacy-bg-shape.shape4 {
-            width: 32px; height: 32px;
-            left: 85%; top: -50px;
-            background: #c2f7e2;
-            animation-delay: 3.5s;
-        }
-        @keyframes fall-shape {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(520px); }
         }
         .pharmacy-hero {
             position: relative;
@@ -265,43 +204,40 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 320px;
-            padding-top: 3.5rem;
-            padding-bottom: 2.5rem;
-            margin-bottom: 3.5rem; /* Increased margin for clear separation */
+            min-height: 280px;
+            padding: 4rem 1rem 3rem 1rem;
+            margin-bottom: 2rem;
         }
         .pharmacy-hero-content {
-            background: rgba(255,255,255,0.92);
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 32px rgba(16,185,129,0.13), 0 2px 8px rgba(127,83,172,0.10);
-            padding: 2.5rem 2.5rem 2.2rem 2.5rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-3xl);
+            box-shadow: var(--shadow-xl);
+            padding: 2.5rem 3rem;
             text-align: center;
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
-            border: 1.5px solid #e0f7ef;
+            border: 1px solid var(--color-border);
         }
         .pharmacy-hero-title {
-            font-size: 2.3rem;
+            font-size: 2.1rem;
             font-weight: 800;
-            color: #1D4ED8;
-            margin-bottom: 0.7rem;
-            letter-spacing: 0.01em;
-            text-shadow: 0 2px 8px rgba(16,185,129,0.08);
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
         }
         .pharmacy-hero-desc {
-            font-size: 1.18rem;
-            color: #222;
-            margin-bottom: 0.2rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+            line-height: 1.6;
         }
         @media (max-width: 700px) {
-            .pharmacy-hero-bg { height: 260px; }
-            .pharmacy-hero-content { padding: 1.2rem 0.7rem; }
-            .pharmacy-hero-title { font-size: 1.3rem; }
-            .pharmacy-hero-desc { font-size: 1rem; }
-            .pharmacy-hero { min-height: 180px; margin-bottom: 1.7rem; }
+            .pharmacy-hero-content { padding: 1.5rem 1rem; }
+            .pharmacy-hero-title { font-size: 1.4rem; }
+            .pharmacy-hero-desc { font-size: 0.95rem; }
+            .pharmacy-hero { min-height: 180px; padding: 3rem 0.5rem 2rem; margin-bottom: 1rem; }
         }
     </style>
     <script>
@@ -461,43 +397,66 @@
     </script>
 </head>
 <body>
-    <!-- Navigation Bar Start -->
-    <header class="site-header" role="banner">
-        <div class="container header-inner">
-            <a class="logo" href="index.html" aria-label="Summit Care Home">
-                <span class="logo-mark" aria-hidden="true">+</span>
-                <span class="logo-text">Summit Care</span>
-            </a>
-            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
-            <nav id="site-nav" class="site-nav" role="navigation">
-                <ul class="nav-list">
-                    <li class="nav-item-dropdown">
-                        <a href="index.html" class="nav-link-dropdown">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html#about">About Us</a></li>
-                            <li><a href="index.html#services">Our Services</a></li>
-                            <li><a href="index.html#testimonials">Patient Stories</a></li>
-                            <li><a href="index.html#contact">Get in Touch</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="appointment.html">Book appointment</a></li>
-                    <li><a href="payment.html">Payment and Billing</a></li>
-                </ul>
-                <div class="nav-buttons">
-                    <a class="btn btn-outline btn-signup" href="signup.html" role="button"
-                        aria-label="Sign up button">Sign Up</a>
-                    <a class="btn btn-primary btn-login" href="login.html" role="button"
-                        aria-label="Login button">Login</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Global Navigation Component V2 -->
+    <header class="site-header" id="site-header" role="banner">
+        <!-- Top Bar -->
+        <div class="header-top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="tel:+11234567890"><i class="fas fa-phone-alt"></i> (123) 456-7890</a>
+                    <a href="mailto:hello@summitcare.com"><i class="fas fa-envelope"></i> hello@summitcare.com</a>
                 </div>
-            </nav>
+                <div class="top-bar-right">
+                    <div class="top-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="top-auth-links">
+                        <a href="login.html"><i class="fas fa-user-circle"></i> Patient Portal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation Bar -->
+        <div class="header-main-bar">
+            <div class="container main-bar-inner">
+                <a class="logo" href="index.html" aria-label="Summit Care Home">
+                    <span class="logo-mark" aria-hidden="true">+</span>
+                    <span class="logo-text">Summit Care</span>
+                </a>
+
+                <nav id="site-nav" class="site-nav" role="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item-dropdown">
+                            <a href="index.html" class="nav-link-dropdown">Home</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#about">About Us</a></li>
+                                <li><a href="index.html#services">Our Services</a></li>
+                                <li><a href="index.html#testimonials">Patient Stories</a></li>
+                                <li><a href="index.html#contact">Get in Touch</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pharmacy.html">Pharmacy</a></li>
+                        <li><a href="billing.html">Billing</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-actions">
+                    <a class="btn btn-primary btn-pill" href="appointment.html">Book Appointment</a>
+                    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    <!-- Navigation Bar End -->
     <main id="main">
         <div class="pharmacy-hero-bg">
             <div class="pharmacy-bg-shape shape1"></div>
@@ -552,9 +511,8 @@
             </div>
         </div>
     </main>
-    <!-- Footer from index.html -->
+    <!-- Footer V2 -->
     <footer class="site-footer" role="contentinfo">
-        <!-- Main Footer Content -->
         <div class="footer-main">
             <div class="container">
                 <div class="footer-content">
@@ -566,13 +524,13 @@
                         </a>
                         <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.</p>
                         <div class="social-links">
-                            <a href="#" aria-label="Facebook" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Twitter" class="social-link twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="LinkedIn" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Instagram" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="YouTube" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
+
                     <!-- Quick Links -->
                     <div class="footer-section">
                         <h4 class="footer-title">Quick Links</h4>
@@ -584,6 +542,7 @@
                             <li><a href="login.html">Patient Portal</a></li>
                         </ul>
                     </div>
+
                     <!-- Services -->
                     <div class="footer-section">
                         <h4 class="footer-title">Our Services</h4>
@@ -595,73 +554,52 @@
                             <li><a href="index.html#services">Emergency Care</a></li>
                         </ul>
                     </div>
-                    <!-- Contact Information -->
-                    <div class="footer-section">
-                        <h4 class="footer-title">Contact Information</h4>
+
+                    <!-- Contact & Newsletter -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Contact & Updates</h4>
                         <div class="contact-info">
                             <div class="contact-item">
                                 <i class="fas fa-phone contact-icon"></i>
                                 <div>
-                                    <a href="tel:+11234567890" aria-label="Call Summit Care">(123) 456-7890</a>
+                                    <a href="tel:+11234567890">(123) 456-7890</a>
                                     <span class="contact-label">Main Office</span>
                                 </div>
                             </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone contact-icon emergency"></i>
-                                <div>
-                                    <a href="tel:+11234567891" aria-label="Emergency number">(123) 456-7891</a>
-                                    <span class="contact-label">24/7 Emergency</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope contact-icon"></i>
-                                <div>
-                                    <a href="mailto:hello@summitcare.com" aria-label="Email Summit Care">hello@summitcare.com</a>
-                                    <span class="contact-label">General Inquiries</span>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt contact-icon"></i>
-                                <div>
-                                    <span>123 Summit Ave, Suite 400</span>
-                                    <span class="contact-label">Springfield, IL 62701</span>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <!-- Newsletter Signup -->
-                    <div class="footer-section newsletter-section">
-                        <h4 class="footer-title">Stay Updated</h4>
-                        <p class="newsletter-description">Get health tips, updates, and exclusive offers delivered to your inbox. <strong>Create an account</strong> to access appointment booking, prescription management, and more.</p>
+                        <p class="newsletter-description">Get updates and health tips delivered to your inbox.</p>
                         <form class="newsletter-form" id="newsletterForm">
                             <div class="newsletter-input-group">
-                                <input type="email" placeholder="Enter your email" required aria-label="Email for newsletter">
-                                <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                                <input type="email" placeholder="Email address" required aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
                             </div>
                         </form>
-                        <p class="newsletter-note">We respect your privacy. Unsubscribe at any time. <a href="signup.html" class="auth-link">Create account</a> for full access.</p>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
-                    </div>
-                    <div class="footer-legal">
-                        <a href="#" class="legal-link">Privacy Policy</a>
-                        <a href="#" class="legal-link">Terms of Service</a>
-                        <a href="#" class="legal-link">HIPAA Notice</a>
-                        <a href="#" class="legal-link">Accessibility</a>
-                    </div>
+            <div class="container footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="terms.html">HIPAA Notice</a>
                 </div>
             </div>
         </div>
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
     </footer>
+
+    <script defer src="nav.js"></script>
 </body>
 </html>

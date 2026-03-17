@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Manage your outstanding invoices and payment history at Summit Care.">
+    <title>Payment and Billing | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
-</head>
 
 <body>
-    <!-- Navigation Bar Start -->
-    <!-- ...navigation markup from index.html/nav.html... -->
-    <!-- Navigation Bar End -->
-    <main class="payment-main">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Header / Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Summit Care Home">
+                <span class="logo-mark" aria-hidden="true">+</span>
+                <span class="logo-text">Summit Care</span>
+            </a>
+
+            <div class="nav-controls">
+                <nav id="site-nav" class="site-nav" role="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item-dropdown">
+                            <a href="index.html" class="nav-link-dropdown">Home</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#about">About Us</a></li>
+                                <li><a href="index.html#services">Our Services</a></li>
+                                <li><a href="index.html#testimonials">Patient Stories</a></li>
+                                <li><a href="index.html#contact">Get in Touch</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="pharmacy.html">Pharmacy</a></li>
+                        <li><a href="billing.html">Billing & Payment</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-auth">
+                    <a class="btn btn-outline" href="signup.html">Sign Up</a>
+                    <a class="btn btn-primary" href="login.html">Login</a>
+                </div>
+
+                <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="payment-main">
         <section class="billing-section">
             <div class="container">
                 <h1>Payment & Billing</h1>
@@ -51,7 +94,147 @@
             </div>
         </section>
     </main>
-    <script src="payment.js"></script>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" aria-label="Twitter" class="social-link twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" aria-label="LinkedIn" class="social-link linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube" class="social-link youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Contact Information</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890" aria-label="Call Summit Care">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon emergency"></i>
+                                <div>
+                                    <a href="tel:+11234567891" aria-label="Emergency number">(123) 456-7891</a>
+                                    <span class="contact-label">24/7 Emergency</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <div>
+                                    <a href="mailto:hello@summitcare.com"
+                                        aria-label="Email Summit Care">hello@summitcare.com</a>
+                                    <span class="contact-label">General Inquiries</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt contact-icon"></i>
+                                <div>
+                                    <span>123 Summit Ave, Suite 400</span>
+                                    <span class="contact-label">Springfield, IL 62701</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Stay Updated</h4>
+                        <p class="newsletter-description">Get health tips, updates, and exclusive offers delivered to
+                            your inbox. <strong>Create an account</strong> to access appointment booking, prescription
+                            management, and more.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Enter your email" required
+                                    aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="newsletter-note">We respect your privacy. Unsubscribe at any time. <a
+                                href="signup.html" class="auth-link">Create account</a> for full access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">HIPAA Notice</a>
+                        <a href="#" class="legal-link">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+
+    <script defer src="nav.js"></script>
+    <script defer src="payment.js"></script>
     <script>
         // Redirect payment.html to billing.html
         if (window.location.pathname.endsWith('payment.html')) {

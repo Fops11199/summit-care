@@ -127,4 +127,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    // Handle sticky header scroll state
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                siteHeader.classList.add('scrolled');
+            } else {
+                siteHeader.classList.remove('scrolled');
+            }
+        }, { passive: true });
+        
+        // Initial check in case page is loaded already scrolled
+        if (window.scrollY > 50) {
+            siteHeader.classList.add('scrolled');
+        }
+    }
 });

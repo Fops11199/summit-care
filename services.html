@@ -6,52 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Summit Care Services - Explore our full catalog of medical specialties and treatments." />
     <title>Services | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <!-- Global Header -->
-    <header>
-        <div class="container header-inner">
-            <a class="logo" href="index.html" aria-label="Summit Care Home">
-                <span class="logo-mark" aria-hidden="true">+</span>
-                <span class="logo-text">Summit Care</span>
-            </a>
-            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
-            <nav id="site-nav" class="site-nav" role="navigation">
-                <ul class="nav-list">
-                    <li class="nav-item-dropdown">
-                        <a href="index.html" class="nav-link-dropdown">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html#about">About Us</a></li>
-                            <li><a href="index.html#services">Our Services</a></li>
-                            <li><a href="index.html#testimonials">Patient Stories</a></li>
-                            <li><a href="index.html#contact">Get in Touch</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="appointment.html">Book Appointment</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-                <div class="nav-buttons">
-                    <a class="btn btn-outline btn-signup" href="signup.html" role="button" aria-label="Sign up button">Sign Up</a>
-                    <a class="btn btn-primary btn-login" href="login.html" role="button" aria-label="Login button">Login</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Global Navigation Component V2 -->
+    <header class="site-header" id="site-header" role="banner">
+        <!-- Top Bar -->
+        <div class="header-top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="tel:+11234567890"><i class="fas fa-phone-alt"></i> (123) 456-7890</a>
+                    <a href="mailto:hello@summitcare.com"><i class="fas fa-envelope"></i> hello@summitcare.com</a>
                 </div>
-            </nav>
+                <div class="top-bar-right">
+                    <div class="top-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="top-auth-links">
+                        <a href="login.html"><i class="fas fa-user-circle"></i> Patient Portal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation Bar -->
+        <div class="header-main-bar">
+            <div class="container main-bar-inner">
+                <a class="logo" href="index.html" aria-label="Summit Care Home">
+                    <span class="logo-mark" aria-hidden="true">+</span>
+                    <span class="logo-text">Summit Care</span>
+                </a>
+
+                <nav id="site-nav" class="site-nav" role="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item-dropdown">
+                            <a href="index.html" class="nav-link-dropdown">Home</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#about">About Us</a></li>
+                                <li><a href="index.html#services">Our Services</a></li>
+                                <li><a href="index.html#testimonials">Patient Stories</a></li>
+                                <li><a href="index.html#contact">Get in Touch</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pharmacy.html">Pharmacy</a></li>
+                        <li><a href="billing.html">Billing</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-actions">
+                    <a class="btn btn-primary btn-pill" href="appointment.html">Book Appointment</a>
+                    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    <main class="services-main">
-        <!-- Hero Section -->
-        <section class="services-hero">
-            <div class="hero-bg" style="background-image:url('images/team.jpg');"></div>
-            <div class="hero-content">
-                <h1 style="color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.18);">Compassionate Care, Exceptional Medicine</h1>
-                <p style="color:#eaf6fb; text-shadow:0 2px 8px rgba(0,0,0,0.18);">Welcome to Summit Care, where your health journey is our passion. Discover world-class medical services delivered with heart, expertise, and a personal touch—because you deserve the best at every step.</p>
-                <a href="appointment.html" class="btn btn-primary btn-large">Book Your Appointment Today</a>
+    <main id="main" class="services-main">
+        <!-- Interior Page Hero -->
+        <section class="interior-hero">
+            <div class="interior-hero-bg" style="background-image:url('images/66cc7e13c8bc5cfa286ea25f18742517.jpg');">
+                <div class="interior-hero-overlay"></div>
+            </div>
+            <div class="container interior-hero-content reveal-up">
+                <h1 class="hero-title">Compassionate Care, Exceptional Medicine</h1>
+                <p class="hero-subtitle">Welcome to Summit Care, where your health journey is our passion. Discover world-class medical services delivered with heart, expertise, and a personal touch—because you deserve the best at every step.</p>
             </div>
         </section>
         <!-- Core Services Overview -->
@@ -60,7 +91,7 @@
                 <h2 class="section-title">Our Core Services</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="images/team.jpg" alt="General Medicine" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/team.jpg" alt="General Medicine" class="service-img" />
                         <i class="fas fa-stethoscope service-icon"></i>
                         <h3>General Medicine</h3>
                         <p>Comprehensive care for adults and seniors.</p>
@@ -70,7 +101,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/brain1.jpg" alt="Cardiology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/brain1.jpg" alt="Cardiology" class="service-img" />
                         <i class="fas fa-heartbeat service-icon"></i>
                         <h3>Cardiology</h3>
                         <p>Expert heart care and diagnostics.</p>
@@ -80,7 +111,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/brain2.jpg" alt="Pediatrics" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/brain2.jpg" alt="Pediatrics" class="service-img" />
                         <i class="fas fa-baby service-icon"></i>
                         <h3>Pediatrics</h3>
                         <p>Gentle care for children and teens.</p>
@@ -90,7 +121,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/network1.jpg" alt="Diagnostics & Imaging" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/network1.jpg" alt="Diagnostics & Imaging" class="service-img" />
                         <i class="fas fa-x-ray service-icon"></i>
                         <h3>Diagnostics & Imaging</h3>
                         <p>Advanced testing and imaging services.</p>
@@ -100,7 +131,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/outreach.jpg" alt="Surgical Services" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/outreach.jpg" alt="Surgical Services" class="service-img" />
                         <i class="fas fa-user-md service-icon"></i>
                         <h3>Surgical Services</h3>
                         <p>State-of-the-art surgical care.</p>
@@ -110,7 +141,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/teamp.jpg" alt="Mental Health" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/teamp.jpg" alt="Mental Health" class="service-img" />
                         <i class="fas fa-brain service-icon"></i>
                         <h3>Mental Health</h3>
                         <p>Compassionate counseling and psychiatric care.</p>
@@ -120,7 +151,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/team3.webp" alt="Obstetrics & Gynecology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/team3.webp" alt="Obstetrics & Gynecology" class="service-img" />
                         <i class="fas fa-female service-icon"></i>
                         <h3>Obstetrics & Gynecology</h3>
                         <p>Women's health, prenatal, and reproductive care.</p>
@@ -130,7 +161,7 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="images/team1.webp" alt="Dermatology" class="service-img" style="width:100%;border-radius:1rem;margin-bottom:0.7rem;" />
+                        <img src="images/team1.webp" alt="Dermatology" class="service-img" />
                         <i class="fas fa-sun service-icon"></i>
                         <h3>Dermatology</h3>
                         <p>Skin, hair, and nail care for all ages.</p>
@@ -234,19 +265,98 @@
             </div>
         </section>
     </main>
-    <!-- Global Footer -->
-    <footer>
-        <div class="container footer-inner">
-            <p>&copy; 2023 Summit Care. All rights reserved.</p>
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
+    <!-- Footer V2 -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Newsletter -->
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Contact & Updates</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="newsletter-description">Get updates and health tips delivered to your inbox.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Email address" required aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="terms.html">HIPAA Notice</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
     </footer>
+    <noscript>Your browser does not support JavaScript or it is disabled. Some interactive features may not
+        work.</noscript>
+    <script defer src="nav.js"></script>
     <script type="module" src="services.js"></script>
 </body>
 

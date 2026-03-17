@@ -3,107 +3,95 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Read Summit Care's Terms of Service to understand your rights and responsibilities.">
     <title>Terms of Service | Summit Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <style>
-        body {
-            background: linear-gradient(135deg, #f7fcf9 0%, #eaf6fb 100%);
-        }
+        body { background: var(--color-bg-alt); }
         .terms-hero {
-            background: linear-gradient(90deg, #3aafa9 0%, #0f3460 100%);
+            background: var(--color-primary);
             color: #fff;
-            padding: 3rem 0 2rem 0;
+            padding: 5rem 0 3.5rem 0;
             text-align: center;
-            border-radius: 0 0 2rem 2rem;
         }
         .terms-hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.03em;
         }
         .terms-hero p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 400;
+            opacity: 0.85;
         }
         .terms-main {
             display: flex;
             gap: 2.5rem;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
         .terms-sidebar {
             min-width: 220px;
             position: sticky;
-            top: 2rem;
-            background: #fff;
-            border-radius: 1rem;
-            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
-            padding: 2rem 1rem;
+            top: 100px;
+            background: var(--color-bg);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
+            padding: 2rem 1.2rem;
             height: fit-content;
+            border: 1px solid var(--color-border);
         }
-        .terms-sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .terms-sidebar li {
-            margin-bottom: 1.2rem;
-        }
+        .terms-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .terms-sidebar li { margin-bottom: 0.9rem; }
         .terms-sidebar a {
-            color: #0f3460;
-            font-weight: 600;
+            color: var(--color-text-muted);
+            font-weight: 500;
             text-decoration: none;
             transition: color 0.2s;
+            font-size: 0.95rem;
         }
-        .terms-sidebar a:hover {
-            color: #3aafa9;
-        }
+        .terms-sidebar a:hover { color: var(--color-primary); }
         .terms-content {
             flex: 1;
-            background: #fff;
-            border-radius: 1rem;
-            box-shadow: 0 2px 16px rgba(60, 120, 180, 0.08);
+            background: var(--color-bg);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-md);
             padding: 2.5rem 2rem;
+            border: 1px solid var(--color-border);
         }
         .terms-content h2 {
             font-size: 1.4rem;
-            margin-top: 2rem;
-            margin-bottom: 0.5rem;
-            color: #0f3460;
+            margin-top: 2.5rem;
+            margin-bottom: 0.7rem;
+            color: var(--color-primary);
         }
+        .terms-content h2:first-child { margin-top: 0; }
         .terms-content p, .terms-content ul {
-            font-size: 1.05rem;
-            color: #222;
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
         }
-        .accordion {
-            margin: 1.5rem 0;
-        }
-        .accordion-section {
-            border-bottom: 1px solid #e0e0e0;
-        }
+        .accordion-section { border-bottom: 1px solid var(--color-border); }
         .accordion-title {
             font-weight: 600;
             cursor: pointer;
-            padding: 1rem 0;
-            color: #0f3460;
+            padding: 1.2rem 0;
+            color: var(--color-primary);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: color 0.2s;
         }
-        .accordion-content {
-            display: none;
-            padding-bottom: 1rem;
-        }
-        .accordion-section.active .accordion-content {
-            display: block;
-        }
+        .accordion-title:hover { color: var(--color-accent); }
+        .accordion-content { display: none; padding-bottom: 1.2rem; }
+        .accordion-section.active .accordion-content { display: block; }
         @media (max-width: 900px) {
-            .terms-main {
-                flex-direction: column;
-            }
-            .terms-sidebar {
-                position: static;
-                margin-bottom: 2rem;
-            }
+            .terms-main { flex-direction: column; }
+            .terms-sidebar { position: static; margin-bottom: 2rem; }
         }
     </style>
     <script>
@@ -118,14 +106,66 @@
     </script>
 </head>
 <body>
-    <header class="site-header">
-        <!-- ...existing navbar code... -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Global Navigation Component V2 -->
+    <header class="site-header" id="site-header" role="banner">
+        <div class="header-top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="tel:+11234567890"><i class="fas fa-phone-alt"></i> (123) 456-7890</a>
+                    <a href="mailto:hello@summitcare.com"><i class="fas fa-envelope"></i> hello@summitcare.com</a>
+                </div>
+                <div class="top-bar-right">
+                    <div class="top-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="top-auth-links">
+                        <a href="login.html"><i class="fas fa-user-circle"></i> Patient Portal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-main-bar">
+            <div class="container main-bar-inner">
+                <a class="logo" href="index.html" aria-label="Summit Care Home">
+                    <span class="logo-mark" aria-hidden="true">+</span>
+                    <span class="logo-text">Summit Care</span>
+                </a>
+                <nav id="site-nav" class="site-nav" role="navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item-dropdown">
+                            <a href="index.html" class="nav-link-dropdown">Home</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#about">About Us</a></li>
+                                <li><a href="index.html#services">Our Services</a></li>
+                                <li><a href="index.html#testimonials">Patient Stories</a></li>
+                                <li><a href="index.html#contact">Get in Touch</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pharmacy.html">Pharmacy</a></li>
+                        <li><a href="billing.html">Billing</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-actions">
+                    <a class="btn btn-primary btn-pill" href="appointment.html">Book Appointment</a>
+                    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                        <span class="bar" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
     <section class="terms-hero">
         <h1>Terms of Service</h1>
         <p>Welcome to Summit Care. Please review our terms to understand your rights and responsibilities as a user.</p>
     </section>
-    <main class="terms-main container">
+    <main id="main" class="terms-main container">
         <nav class="terms-sidebar">
             <ul>
                 <li><a href="#acceptance">Acceptance of Terms</a></li>
@@ -197,12 +237,83 @@
             </section>
             <section id="contact">
                 <h2>Contact</h2>
-                <p>If you have questions about these terms, please <a href="contact.html">contact us</a>.</p>
+                <p>If you have questions about these terms, please <a href="index.html#contact">contact us</a>.</p>
             </section>
         </div>
     </main>
-    <footer class="site-footer">
-        <!-- ...existing code... -->
+    <!-- Footer V2 -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a class="logo" href="index.html" aria-label="Summit Care Home">
+                            <span class="logo-mark" aria-hidden="true">+</span>
+                            <span class="logo-text">Summit Care</span>
+                        </a>
+                        <p class="brand-description">Compassionate care. Modern experience. Your health, our priority.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Our Services</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="signup.html">Create Account</a></li>
+                            <li><a href="login.html">Patient Portal</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html#services">Primary Care</a></li>
+                            <li><a href="index.html#services">Specialists</a></li>
+                            <li><a href="index.html#services">Telemedicine</a></li>
+                            <li><a href="index.html#services">Lab Services</a></li>
+                            <li><a href="index.html#services">Emergency Care</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section newsletter-section">
+                        <h4 class="footer-title">Contact & Updates</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon"></i>
+                                <div>
+                                    <a href="tel:+11234567890">(123) 456-7890</a>
+                                    <span class="contact-label">Main Office</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="newsletter-description">Get updates and health tips delivered to your inbox.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Email address" required aria-label="Email for newsletter">
+                                <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <div class="copyright"><p>&copy; <span id="year"></span> Summit Care. All rights reserved.</p></div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="terms.html">HIPAA Notice</a>
+                </div>
+            </div>
+        </div>
+        <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
     </footer>
+    <noscript>Your browser does not support JavaScript or it is disabled. Some interactive features may not work.</noscript>
+    <script defer src="nav.js"></script>
 </body>
 </html>
