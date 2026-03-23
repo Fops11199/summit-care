@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 dropdown.style.opacity = '0';
                 dropdown.style.visibility = 'hidden';
                 dropdown.style.transform = 'translateY(-8px)';
+                if (window.innerWidth <= 900) dropdown.style.display = 'none';
             });
         }
     });
