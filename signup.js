@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Form validation
     const validators = {
+        fullName: (value) => {
+            if (!value.trim()) return 'Full name is required.';
+            if (value.trim().length < 2) return 'Please enter your full name.';
+            return true;
+        },
         firstName: (value) => {
             if (!value.trim()) return 'First name is required.';
             if (value.trim().length < 2) return 'First name must be at least 2 characters.';
@@ -87,6 +92,11 @@ document.addEventListener('DOMContentLoaded', function () {
         lastName: (value) => {
             if (!value.trim()) return 'Last name is required.';
             if (value.trim().length < 2) return 'Last name must be at least 2 characters.';
+            return true;
+        },
+        address: (value) => {
+            if (!value.trim()) return 'Address is required.';
+            if (value.trim().length < 5) return 'Please enter a valid address.';
             return true;
         },
         dateOfBirth: (value) => {
@@ -184,15 +194,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function validateField(input) {
         const { id, value } = input;
-        const errorEl = input.parentElement.parentElement.querySelector('.error');
-        if (!errorEl) return true;
+        const errorEl = input.parentElement.querySelector('.error')
+                     || input.parentElement.parentElement.querySelector('.error');
+
+        // If there's no validator for this field, treat it as valid
+        if (!validators[id]) {
+            if (errorEl) errorEl.textContent = '';
+            return true;
+        }
 
         const result = validators[id](value);
         if (result !== true) {
-            errorEl.textContent = result;
+            if (errorEl) errorEl.textContent = result;
             return false;
         }
-        errorEl.textContent = '';
+        if (errorEl) errorEl.textContent = '';
         return true;
     }
 
@@ -203,47 +219,15 @@ document.addEventListener('DOMContentLoaded', function () {
         input.addEventListener('blur', () => validateField(input));
     });
 
-    // Enable/disable next/prev/submit buttons based on form completion
+    // Ensure all nav buttons start enabled — validation runs on click
     function updateButtonStates() {
-        formSteps.forEach((step, idx) => {
-            const requiredFields = step.querySelectorAll('input[required], select[required]');
-            let allFilled = true;
-            requiredFields.forEach(field => {
-                if (!field.value || (field.type === 'checkbox' && !field.checked)) {
-                    allFilled = false;
-                }
-            });
+        formSteps.forEach(step => {
             const nextBtn = step.querySelector('.next-step');
             const prevBtn = step.querySelector('.prev-step');
-            const submitBtn = step.querySelector('button[type="submit"]');
-            if (nextBtn) {
-                if (allFilled) {
-                    nextBtn.classList.add('enabled');
-                    nextBtn.disabled = false;
-                } else {
-                    nextBtn.classList.remove('enabled');
-                    nextBtn.disabled = true;
-                }
-            }
-            if (submitBtn) {
-                if (allFilled) {
-                    submitBtn.classList.add('enabled');
-                    submitBtn.disabled = false;
-                } else {
-                    submitBtn.classList.remove('enabled');
-                    submitBtn.disabled = true;
-                }
-            }
-            if (prevBtn) {
-                prevBtn.classList.add('enabled');
-                prevBtn.disabled = false;
-            }
+            if (nextBtn)  { nextBtn.disabled  = false; nextBtn.classList.add('enabled'); }
+            if (prevBtn)  { prevBtn.disabled   = false; prevBtn.classList.add('enabled'); }
         });
     }
-    allInputs.forEach(input => {
-        input.addEventListener('input', updateButtonStates);
-        input.addEventListener('blur', updateButtonStates);
-    });
     updateButtonStates();
 
     // Password strength checker
@@ -331,41 +315,72 @@ document.addEventListener('DOMContentLoaded', function () {
         formStatus.textContent = 'Creating your account...';
         formStatus.style.color = '#111';
 
-        // Simulate account creation
         setTimeout(() => {
-            formStatus.textContent = 'Account created successfully! Welcome to Summit Care.';
+            const formData = new FormData(signupForm);
+            const email = (formData.get('email') || '').trim().toLowerCase();
+            const password = (formData.get('password') || '').trim();
+            const fullName = (formData.get('fullName') || '').trim();
+            const nameParts = fullName.split(' ');
+
+            // ── Load the shared user registry ──────────────────────────
+            const registeredUsers = JSON.parse(
+                localStorage.getItem('summitCare_registeredUsers') || '[]'
+            );
+
+            // Check for duplicate email (also check built-in dummy accounts via login.js list)
+            const duplicate = registeredUsers.some(u => u.email === email);
+            if (duplicate) {
+                formStatus.textContent = 'An account with this email already exists. Please log in.';
+                formStatus.style.color = '#8a0000';
+                submitButton.innerHTML = 'Sign Up & Complete';
+                submitButton.disabled = false;
+                return;
+            }
+
+            // ── Build new user record ───────────────────────────────────
+            const newUser = {
+                id: 'user_' + Math.random().toString(36).substr(2, 9),
+                firstName: nameParts[0] || fullName,
+                lastName: nameParts.slice(1).join(' ') || '',
+                fullName: fullName,
+                email: email,
+                password: password,                 // stored for mock login matching
+                phone: formData.get('phone') || '',
+                dob: formData.get('dateOfBirth') || '',
+                gender: formData.get('gender') || '',
+                address: formData.get('address') || '',
+                bloodType: formData.get('bloodGroup') || 'Unknown',
+                allergies: formData.get('allergies') || 'None',
+                insuranceId: formData.get('insuranceId') || '',
+                role: 'Patient',
+                doctor: 'Dr. Sarah Jenkins',        // default assigned doctor
+                nextVisit: 'TBD',
+                bloodPressure: 'Not recorded',
+                weight: 'Not recorded',
+                medications: '0 Active',
+                registeredAt: new Date().toISOString()
+            };
+
+            // ── Append and persist ──────────────────────────────────────
+            registeredUsers.push(newUser);
+            localStorage.setItem('summitCare_registeredUsers', JSON.stringify(registeredUsers));
+
+            // Also write as the active session so they land on the dashboard
+            localStorage.setItem('summitCare_userData', JSON.stringify(newUser));
+            localStorage.setItem('summitCare_userSession', JSON.stringify({
+                userId: newUser.id,
+                timestamp: Date.now(),
+                token: 'demo_token_' + Math.random().toString(36).substr(2, 9)
+            }));
+
+            formStatus.textContent = 'Account created! Redirecting to your dashboard…';
             formStatus.style.color = '#054105';
 
-            // Store user session data for demo
-            const formData = new FormData(signupForm);
-            const userData = {
-                fullName: formData.get('fullName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                dateOfBirth: formData.get('dateOfBirth'),
-                gender: formData.get('gender'),
-                address: formData.get('address'),
-                bloodGroup: formData.get('bloodGroup'),
-                allergies: formData.get('allergies'),
-                insuranceId: formData.get('insuranceId'),
-                id: 'user_' + Math.random().toString(36).substr(2, 9)
-            };
-
-            const userSession = {
-                userId: userData.id,
-                timestamp: new Date().getTime(),
-                token: 'demo_token_' + Math.random().toString(36).substr(2, 9)
-            };
-
-            localStorage.setItem('summitCare_userData', JSON.stringify(userData));
-            localStorage.setItem('summitCare_userSession', JSON.stringify(userSession));
-
-            // Show success message and redirect
             setTimeout(() => {
-                showToast('Account created successfully! Welcome to Summit Care.', 'success');
-                window.location.href = 'dashboard.html';
-            }, 1000);
-        }, 2000);
+                showToast(`Welcome to Summit Care, ${newUser.firstName}! 🎉`, 'success');
+                setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+            }, 800);
+        }, 1500);
     });
 
     // Enhanced form interactions
