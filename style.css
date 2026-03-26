@@ -4102,6 +4102,9 @@ a { color: inherit; }
   .hero-visual { height: 280px; }
   .floating-badge { display: none; }
 
+  .dashboard-header { margin-top: 0; }
+  .dashboard-content { padding: var(--space-6) 0; }
+
   .dashboard-grid { grid-template-columns: 1fr; }
   .appointments, .messages, .health-tips, .activity,
   .health-summary, .quick-actions-section {
@@ -4170,6 +4173,59 @@ a { color: inherit; }
   /* Service card images: keep them from dominating on very small screens */
   .service-card img {
     height: 180px;
+  }
+
+  /* Dashboard (appointments/messages) */
+  .dashboard-header {
+    margin-top: 0;
+    padding: var(--space-6) 0;
+  }
+
+  .dashboard-content {
+    padding: var(--space-6) 0;
+  }
+
+  .dashboard-section {
+    padding: var(--space-4);
+  }
+
+  .appointment-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .appointment-time {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-right: 0;
+    padding-bottom: var(--space-3);
+    min-width: auto;
+    text-align: left;
+    width: 100%;
+  }
+
+  .appointment-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .appointment-actions .btn {
+    width: 100%;
+  }
+
+  .message-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .message-header {
+    width: 100%;
+  }
+
+  .tip-card,
+  .activity-item {
+    flex-direction: column;
   }
 }
 

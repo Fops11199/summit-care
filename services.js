@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let searchTerm = '';
 
     function renderGrid() {
+        if (!grid) return;
         let filtered = servicesData.filter(service => {
             const matchesCategory = activeCategory === 'All Services' || service.category === activeCategory;
             const matchesSearch = service.name.toLowerCase().includes(searchTerm) || service.description.toLowerCase().includes(searchTerm);
@@ -19,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         grid.innerHTML = '';
         if (filtered.length === 0) {
-            notFoundMsg.classList.remove('hidden');
+            if (notFoundMsg) notFoundMsg.classList.remove('hidden');
             return;
         } else {
-            notFoundMsg.classList.add('hidden');
+            if (notFoundMsg) notFoundMsg.classList.add('hidden');
         }
         filtered.forEach(service => {
             const card = document.createElement('div');
@@ -78,10 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Search functionality
-    searchInput.addEventListener('keyup', function (e) {
-        searchTerm = e.target.value.trim().toLowerCase();
-        renderGrid();
-    });
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function (e) {
+            searchTerm = e.target.value.trim().toLowerCase();
+            renderGrid();
+        });
+    }
 
     // Category filter functionality
     filterBtns.forEach(btn => {
@@ -93,6 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Initial render
-    renderGrid();
+    // Initial render (only if the grid exists)
+    if (grid) renderGrid();
 });

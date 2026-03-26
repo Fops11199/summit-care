@@ -16,10 +16,10 @@ const mockServices = [
     { id: 'pediatrics', name: 'Pediatrics' }
 ];
 const mockDoctors = [
-    { id: 'd1', name: 'Dr. John Smith', photo: 'images/smith.jpg', specialty: 'general' },
-    { id: 'd2', name: 'Dr. Emily Carter', photo: 'images/carter.jpg', specialty: 'cardiology' },
-    { id: 'd3', name: 'Dr. Michael Lee', photo: 'images/lee.jpg', specialty: 'cardiology' },
-    { id: 'd4', name: 'Dr. Sarah Chen', photo: 'images/chen.jpg', specialty: 'pediatrics' }
+    { id: 'd1', name: 'Dr. John Smith', photo: 'images/0ed625d083b9293a2e4832441059d0e8.jpg', specialty: 'general' },
+    { id: 'd2', name: 'Dr. Emily Carter', photo: 'images/92714ac970ba0f30f3feed3a692b0081.jpg', specialty: 'cardiology' },
+    { id: 'd3', name: 'Dr. Michael Lee', photo: 'images/56d35f4ebc97267429b84937fe7794a1.jpg', specialty: 'cardiology' },
+    { id: 'd4', name: 'Dr. Sarah Chen', photo: 'images/06338c5618390aa8daa78da139a092a7.jpg', specialty: 'pediatrics' }
 ];
 
 // Utility: Parse URL query params
