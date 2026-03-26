@@ -871,6 +871,8 @@ a { color: inherit; }
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* mobile viewport stability */
+  min-height: 100dvh; /* dynamic viewport on modern browsers */
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -952,6 +954,8 @@ a { color: inherit; }
   align-items: center;
   padding: var(--space-12) 0;
   min-height: 100vh;
+  min-height: 100svh; /* mobile viewport stability */
+  min-height: 100dvh; /* dynamic viewport on modern browsers */
 }
 
 /* Hero left — text */
@@ -2400,6 +2404,8 @@ a { color: inherit; }
    ═══════════════════════════════════════════════════ */
 .auth-section {
   min-height: 100vh;
+  min-height: 100svh; /* mobile viewport stability */
+  min-height: 100dvh; /* dynamic viewport on modern browsers */
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, var(--c-charcoal) 0%, var(--c-ink) 50%, var(--c-obsidian) 100%);
@@ -3401,6 +3407,27 @@ a { color: inherit; }
   border-radius: var(--radius-full);
 }
 
+/* Billing cards: ensure amount/details wrap on narrow screens */
+@media (max-width: 600px) {
+  .invoice-list .invoice-card {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .invoice-list .invoice-card .inv-amount {
+    width: 100%;
+  }
+
+  .receipt-list > div {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .receipt-list > div .pay-amount {
+    width: 100%;
+  }
+}
+
 /* ═══════════════════════════════════════════════════
    SERVICES PAGE
    ═══════════════════════════════════════════════════ */
@@ -3944,8 +3971,10 @@ a { color: inherit; }
 
 /* Login/signup page */
 .login-main, .signup-main {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
+  min-height: 100svh; /* mobile viewport stability */
+  min-height: 100dvh; /* dynamic viewport on modern browsers */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4009,7 +4038,7 @@ a { color: inherit; }
 
   .site-nav {
     position: fixed;
-    inset: 76px 0 auto 0;
+    inset: calc(76px + env(safe-area-inset-top)) 0 auto 0;
     background: var(--c-white);
     box-shadow: var(--shadow-lg);
     padding: var(--space-5);
@@ -4022,6 +4051,8 @@ a { color: inherit; }
     z-index: 999;
     overflow-y: auto;
     max-height: calc(100vh - 76px);
+    max-height: calc(100svh - 76px);
+    max-height: calc(100dvh - 76px);
   }
 
   .site-nav.open { transform: translateY(0); }
@@ -4177,6 +4208,8 @@ a { color: inherit; }
 .auth-page-body {
     background: var(--color-bg-alt);
     min-height: 100vh;
+    min-height: 100svh; /* mobile viewport stability */
+    min-height: 100dvh; /* dynamic viewport on modern browsers */
     display: flex;
     align-items: center;
     justify-content: center;

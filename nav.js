@@ -24,6 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Scroll to a target while accounting for the sticky header height.
+    function scrollToSection(target) {
+        const header = document.querySelector('.site-header');
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const y = Math.max(
+            0,
+            target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8
+        );
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        try {
+            target.focus({ preventScroll: true });
+        } catch {
+            target.focus();
+        }
+    }
+
     // Handle internal page navigation (for home page sections)
     const internalLinks = document.querySelectorAll('a[href^="#"]');
     internalLinks.forEach((anchor) => {
@@ -34,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const target = document.getElementById(href.substring(1));
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-                target.focus({ preventScroll: true });
+                scrollToSection(target);
             }
         });
     });
@@ -53,9 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     e.preventDefault();
                     const target = document.getElementById(section);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-                        target.focus({ preventScroll: true });
+                        scrollToSection(target);
                     }
                 }
                 // If we're not on the home page, let the link navigate normally
@@ -145,4 +160,94 @@ document.addEventListener('DOMContentLoaded', function () {
             siteHeader.classList.add('scrolled');
         }
     }
+
+    // ─── Global Auth Navigation State ────────────────────────────────
+    function updateAuthNavState() {
+        const sessionString = localStorage.getItem('summitCare_userSession');
+        if (!sessionString) return;
+
+        try {
+            const session = JSON.parse(sessionString);
+            const now = new Date().getTime();
+            
+            // Validate 24-hour expiry
+            if (now - session.timestamp > 24 * 60 * 60 * 1000) {
+                localStorage.removeItem('summitCare_userSession');
+                return;
+            }
+
+            // User is actively logged in
+            const userDataStr = localStorage.getItem('summitCare_userData');
+            const userData = userDataStr ? JSON.parse(userDataStr) : {};
+            const firstName = userData.firstName || 'My';
+
+            // 1. Update Desktop Nav Actions (hide Log In/Sign Up, show Dashboard/Logout)
+            const desktopNavs = document.querySelectorAll('.nav-actions');
+            desktopNavs.forEach(desktopNav => {
+                const toggle = desktopNav.querySelector('.nav-toggle');
+                const toggleHTML = toggle ? toggle.outerHTML : '';
+                
+                desktopNav.innerHTML = `
+                    <a href="dashboard.html" class="btn btn-outline" style="white-space: nowrap; padding: 0.625rem 1.25rem;">
+                        <i class="fas fa-user-circle"></i> ${firstName}'s Portal
+                    </a>
+                    <a href="appointment.html" class="btn btn-primary btn-pulse" style="white-space: nowrap; padding: 0.625rem 1.25rem;">
+                        Book Appointment
+                    </a>
+                    <a href="javascript:void(0)" onclick="logoutUser()" class="btn btn-outline" style="white-space: nowrap; padding: 0.625rem 1.1rem; border-color: rgba(220,53,69,0.3); color: #dc3545;" title="Log Out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                    ${toggleHTML}
+                `;
+                
+                // Rebind toggle listener if we just recreated its HTML
+                const newToggle = desktopNav.querySelector('.nav-toggle');
+                const siteNav = document.querySelector('#site-nav');
+                if (newToggle && siteNav) {
+                    newToggle.addEventListener('click', () => {
+                        const isOpen = siteNav.classList.toggle('open');
+                        newToggle.setAttribute('aria-expanded', String(isOpen));
+                    });
+                }
+            });
+
+            // 2. Update Mobile Menu (hide auth links)
+            const mobileBtns = document.querySelectorAll('.mobile-only-btn a');
+            mobileBtns.forEach(btn => {
+                const h = btn.getAttribute('href');
+                if (h === 'login.html' || h === 'signup.html') {
+                    btn.parentElement.style.display = 'none';
+                }
+            });
+
+            // 3. Inject new Mobile Auth Links
+            const navList = document.querySelector('.nav-list') || document.getElementById('main-nav-list');
+            if (navList) {
+                const dashLi = document.createElement('li');
+                dashLi.className = 'mobile-only-btn';
+                dashLi.innerHTML = `<a href="dashboard.html" style="color: var(--c-teal-700); font-weight: 600;"><i class="fas fa-columns"></i> Dashboard</a>`;
+                
+                const logoutLi = document.createElement('li');
+                logoutLi.className = 'mobile-only-btn';
+                logoutLi.innerHTML = `<a href="javascript:void(0)" onclick="logoutUser()" style="color: #dc3545; font-weight: 600;"><i class="fas fa-sign-out-alt"></i> Log Out</a>`;
+
+                navList.appendChild(dashLi);
+                navList.appendChild(logoutLi);
+            }
+        } catch (e) {
+            console.error('Error enforcing auth UI state:', e);
+        }
+    }
+
+    updateAuthNavState();
 });
+
+// Global Logout handler accessible from inline oncick scripts
+window.logoutUser = function() {
+    localStorage.removeItem('summitCare_userSession');
+    // Also clear session identity payload unless specifically saved elsewhere
+    localStorage.removeItem('summitCare_userData');
+    
+    // Redirect cleanly
+    window.location.href = window.location.pathname.includes('dashboard.html') ? 'login.html' : window.location.href;
+};

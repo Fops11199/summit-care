@@ -25,6 +25,8 @@ css_rules = """
 .auth-page-body {
     background: var(--color-bg-alt);
     min-height: 100vh;
+    min-height: 100svh; /* mobile viewport stability */
+    min-height: 100dvh; /* dynamic viewport on modern browsers */
     display: flex;
     align-items: center;
     justify-content: center;

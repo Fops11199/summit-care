@@ -54,7 +54,13 @@ document.addEventListener('DOMContentLoaded', function () {
         updateProgress();
 
         // Scroll to top of form
-        signupForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const header = document.querySelector('.site-header');
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const y = Math.max(
+            0,
+            signupForm.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8
+        );
+        window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
     // Next step functionality with validation alert
