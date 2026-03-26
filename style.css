@@ -1978,6 +1978,35 @@ a { color: inherit; }
   margin: 0 0 var(--space-2);
   font-weight: 600;
 }
+.image-card{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 1 / -1;
+  align-items: center;  
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  background: var(--c-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  background: var(--c-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
 
 .info-card.main-info p {
   color: var(--c-silver);
@@ -2436,6 +2465,35 @@ a { color: inherit; }
   height: 40vw;
   background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
   pointer-events: none;
+}
+
+
+.learn-more-btn {
+  /* Layout & Spacing */
+  display: inline-block;
+  padding: 12px 24px;
+  margin-right: 15px; /* Space between the two buttons */
+  
+  /* Typography */
+  font-family: sans-serif; /* Replace with your project's font */
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333; /* Dark grey to match the aesthetic */
+  
+  /* Styling */
+  background-color: transparent;
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 50px;    /* Matches the pill shape of the green button */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect for better UX */
+.learn-more-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+  color: #000;
 }
 
 .auth-container {
