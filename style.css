@@ -1515,7 +1515,8 @@ a { color: inherit; }
 
 .service-card img {
   width: 100%;
-  height: 100%;
+  /* Ensure images render even when the optional wrapper isn't present */
+  height: 220px;
   object-fit: cover;
   transition: transform 0.6s var(--ease-out-expo);
 }
@@ -4165,6 +4166,11 @@ a { color: inherit; }
     border-radius: var(--radius-md);
     transform: none;
   }
+
+  /* Service card images: keep them from dominating on very small screens */
+  .service-card img {
+    height: 180px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -4407,14 +4413,49 @@ a { color: inherit; }
 }
 
 @media (max-width: 900px) {
+    .auth-page-body {
+        align-items: flex-start; /* allow natural vertical scroll on mobile */
+        padding: var(--space-4);
+        padding-top: var(--space-4);
+        padding-bottom: var(--space-4);
+        overflow-y: auto;
+    }
+
     .auth-container {
         grid-template-columns: 1fr;
+        border-radius: var(--radius-2xl);
     }
     .auth-image-side {
         display: none;
     }
     .auth-form-side {
         padding: var(--space-6) var(--space-4);
+        justify-content: flex-start; /* avoids centering overflow when viewport shrinks */
+    }
+
+    .auth-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+        margin-bottom: var(--space-6);
+    }
+
+    .auth-header .home-link {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-side {
+        padding: var(--space-5) var(--space-3);
+    }
+
+    .auth-form-wrapper h1 {
+        font-size: 2rem;
+    }
+
+    .auth-header {
+        margin-bottom: var(--space-5);
     }
 }
 
