@@ -136,3 +136,39 @@ const servicesData = [
     alt: 'Lab technician analyzing samples'
   }
 ];
+
+const patientsData = [
+  { id: 'p1', name: 'John Doe', email: 'john.doe@example.com', phone: '123-456-7890', age: 45, gender: 'Male', lastVisit: '2024-03-15', condition: 'Hypertension', status: 'Stable' },
+  { id: 'p2', name: 'Jane Smith', email: 'jane.smith@example.com', phone: '234-567-8901', age: 32, gender: 'Female', lastVisit: '2024-03-20', condition: 'Type 2 Diabetes', status: 'Managing' },
+  { id: 'p3', name: 'Robert Brown', email: 'robert.brown@example.com', phone: '345-678-9012', age: 58, gender: 'Male', lastVisit: '2024-02-28', condition: 'Post-Surgery Recovery', status: 'Improving' },
+  { id: 'p4', name: 'Emily Davis', email: 'emily.davis@example.com', phone: '456-789-0123', age: 27, gender: 'Female', lastVisit: '2024-03-10', condition: 'Asthma', status: 'Stable' },
+  { id: 'p5', name: 'Michael Wilson', email: 'michael.wilson@example.com', phone: '567-890-1234', age: 50, gender: 'Male', lastVisit: '2024-03-25', condition: 'Back Pain', status: 'Acute' }
+];
+
+const allAppointmentsData = [
+  { id: 'a1', patientId: 'p1', patientName: 'John Doe', doctor: 'Dr. Sarah Johnson', date: '2026-03-30', time: '10:00 AM', type: 'Virtual', status: 'Confirmed' },
+  { id: 'a2', patientId: 'p2', patientName: 'Jane Smith', doctor: 'Dr. Michael Chen', date: '2026-03-30', time: '11:30 AM', type: 'In-Person', status: 'Arrived' },
+  { id: 'a3', patientId: 'p3', patientName: 'Robert Brown', doctor: 'Dr. Sarah Johnson', date: '2026-03-30', time: '02:00 PM', type: 'Virtual', status: 'Pending' },
+  { id: 'a4', patientId: 'p4', patientName: 'Emily Davis', doctor: 'Dr. Emily White', date: '2026-03-31', time: '09:00 AM', type: 'In-Person', status: 'Confirmed' }
+];
+
+const messagesData = [
+  {
+    id: 'm1',
+    patientId: 'p1',
+    patientName: 'John Doe',
+    thread: [
+      { sender: 'doctor', message: 'Hello John, your lab results look good. Keep up the healthy diet.', timestamp: '2026-03-28 10:00 AM' },
+      { sender: 'patient', message: 'Thank you, Dr. Johnson. I have been following the plan.', timestamp: '2026-03-28 11:30 AM' }
+    ]
+  },
+  {
+    id: 'm2',
+    patientId: 'p2',
+    patientName: 'Jane Smith',
+    thread: [
+      { sender: 'patient', message: 'I am experiencing some dizziness after taking the new medication.', timestamp: '2026-03-29 02:00 PM' },
+      { sender: 'doctor', message: 'Please stop the medication immediately and come in for a checkup tomorrow.', timestamp: '2026-03-29 02:15 PM' }
+    ]
+  }
+];

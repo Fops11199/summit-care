@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 date: 'March 15, 2026',
                 doctor: 'Dr. Sarah Johnson',
                 type: 'Cardiology Consultation',
-                total: 245.00,
+                total: 147000,
                 items: [
-                    { name: 'Office Visit (Level 3)', cost: 120.00 },
-                    { name: 'ECG / EKG interpretation', cost: 125.00 }
+                    { name: 'Office Visit (Level 3)', cost: 72000 },
+                    { name: 'ECG / EKG interpretation', cost: 75000 }
                 ]
             },
             {
@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 date: 'March 10, 2026',
                 doctor: 'Quest Diagnostics',
                 type: 'Comprehensive Lab Panel',
-                total: 85.50,
+                total: 51300,
                 items: [
-                    { name: 'Complete Blood Count (CBC)', cost: 35.00 },
-                    { name: 'Comprehensive Metabolic Panel', cost: 50.50 }
+                    { name: 'Complete Blood Count (CBC)', cost: 21000 },
+                    { name: 'Comprehensive Metabolic Panel', cost: 30300 }
                 ]
             }
         ],
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 id: 'PAY-88721',
                 date: 'January 12, 2026',
-                amount: 150.00,
+                amount: 90000,
                 method: 'Visa •••• 1234',
                 desc: 'Annual Physical (Dr. Chen)'
             }
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p style="font-size: 0.75rem; color: var(--c-gray-400); margin-top: 5px;">Invoice #${inv.id}</p>
                 </div>
                 <div class="inv-amount" style="text-align: right;">
-                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--c-primary);">$${inv.total.toFixed(2)}</span>
+                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--c-primary);">${inv.total.toLocaleString()} CFA</span>
                 </div>
             `;
             
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p style="font-size: 0.75rem; color: var(--c-gray-400); margin-top: 5px;">Ref: #${pay.id} via ${pay.method}</p>
                 </div>
                 <div class="pay-amount" style="text-align: right;">
-                    <span style="font-size: 1.25rem; font-weight: 600; color: var(--c-gray-600);">$${pay.amount.toFixed(2)}</span>
+                    <span style="font-size: 1.25rem; font-weight: 600; color: var(--c-gray-600);">${pay.amount.toLocaleString()} CFA</span>
                 </div>
             `;
             DOM.receiptList.appendChild(card);
@@ -152,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSummary() {
         if (!billingState.selectedInvoiceId) {
             DOM.summaryItems.innerHTML = '<p class="summary-empty" style="text-align:center; padding: 2rem 0; color: var(--c-gray-400);">Select an invoice on the left to begin.</p>';
-            DOM.totalAmountElement.textContent = '$0.00';
+            DOM.totalAmountElement.textContent = '0 CFA';
             DOM.payButton.disabled = true;
-            DOM.payButton.textContent = 'Pay $0.00 Now';
+            DOM.payButton.textContent = 'Pay 0 CFA Now';
             return;
         }
 
@@ -164,13 +164,13 @@ document.addEventListener('DOMContentLoaded', function () {
         DOM.summaryItems.innerHTML = inv.items.map(item => `
             <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
                 <span style="color: var(--c-gray-600);">${item.name}</span>
-                <span style="font-weight: 500;">$${item.cost.toFixed(2)}</span>
+                <span style="font-weight: 500;">${item.cost.toLocaleString()} CFA</span>
             </div>
         `).join('');
 
-        DOM.totalAmountElement.textContent = `$${inv.total.toFixed(2)}`;
+        DOM.totalAmountElement.textContent = `${inv.total.toLocaleString()} CFA`;
         DOM.payButton.disabled = false;
-        DOM.payButton.innerHTML = `<i class="fas fa-lock"></i> Pay $${inv.total.toFixed(2)} Securely`;
+        DOM.payButton.innerHTML = `<i class="fas fa-lock"></i> Pay ${inv.total.toLocaleString()} CFA Securely`;
     }
 
     // ─── Simulate Payment ───────────────────
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const amtSpan = document.querySelector('.modal-total span');
                 const dateSpan = DOM.modal.querySelector('.modal-date');
                 if (txSpan) txSpan.textContent = billingState.history[0].id;
-                if (amtSpan) amtSpan.textContent = `$${inv.total.toFixed(2)}`;
+                if (amtSpan) amtSpan.textContent = `${inv.total.toLocaleString()} CFA`;
                 if (dateSpan) dateSpan.textContent = billingState.history[0].date;
                 
                 DOM.modal.style.display = 'flex';
