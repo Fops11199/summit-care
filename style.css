@@ -4526,7 +4526,7 @@ a { color: inherit; }
     border: 4px solid rgba(255,255,255,0.15);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .auth-page-body {
         align-items: flex-start; /* allow natural vertical scroll on mobile */
         padding: var(--space-4);

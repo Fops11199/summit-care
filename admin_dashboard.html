@@ -371,7 +371,6 @@
         }
 
         /* Mobile Adjustments */
-        @media (max-width: 1024px) {
             .admin-sidebar {
                 transform: translateX(-100%);
             }
@@ -381,6 +380,62 @@
             .admin-main {
                 margin-left: 0;
             }
+            .admin-top-bar {
+                padding: 0 var(--space-4);
+            }
+            .search-wrapper {
+                width: 180px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .admin-content {
+                padding: var(--space-4);
+            }
+            .overview-main-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .messaging-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .thread-list {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                max-height: 300px;
+            }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 950;
+                backdrop-filter: blur(4px);
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .sidebar-toggle {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: var(--c-ivory);
+                border: 1px solid var(--color-border);
+                border-radius: var(--radius-md);
+                cursor: pointer;
+            }
+        }
+
+        .sidebar-toggle {
+            display: none;
+        }
+
+        .overview-main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-6);
         }
     </style>
 </head>
@@ -440,9 +495,14 @@
 
     <main class="admin-main">
         <header class="admin-top-bar">
-            <div class="search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search patients, appointments..." class="search-input" id="globalSearch">
+            <div style="display: flex; align-items: center; gap: var(--space-4);">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search patients..." class="search-input" id="globalSearch">
+                </div>
             </div>
             
             <div class="admin-actions" style="display: flex; gap: 1rem; align-items: center;">
@@ -502,7 +562,7 @@
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-6);">
+                <div class="overview-main-grid">
                     <div class="card-container">
                         <div class="card-header">
                             <h2 style="font-size: 1.1rem;">Recent Patient Activity</h2>
@@ -624,6 +684,8 @@
             </section>
         </div>
     </main>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Global JS -->
     <script src="mock-data.js"></script>

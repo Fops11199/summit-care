@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.dashboard-section');
     const adminContent = document.getElementById('adminContent');
     const globalSearch = document.getElementById('globalSearch');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
 
     // State
     let activeSection = 'overview';
@@ -19,6 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMessages();
         setupNav();
         setupSearch();
+        setupMobileToggle();
+    }
+
+    function setupMobileToggle() {
+        if (!sidebarToggle) return;
+        
+        sidebarToggle.addEventListener('click', () => {
+            adminSidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            adminSidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // Close sidebar when clicking a nav link on mobile
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) {
+                    adminSidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('active');
+                }
+            });
+        });
     }
 
     // Navigation Logic
