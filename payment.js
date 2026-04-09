@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         closeModalBtn: document.querySelector('.close-modal')
     };
 
+
     function init() {
         if (!DOM.invoiceList) return; // Prevent errors if running on other pages
         bindTabs();
@@ -59,6 +60,27 @@ document.addEventListener('DOMContentLoaded', function () {
         renderHistory();
         bindPaymentSimulation();
         updateSummary();
+        bindMoMoSelection();
+    }
+
+    // ─── Mobile Money Selection ──────────
+    function bindMoMoSelection() {
+        const momoBtns = document.querySelectorAll('.btn-momo');
+        momoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from others
+                momoBtns.forEach(b => b.classList.remove('active'));
+                // Add to clicked
+                btn.classList.add('active');
+                
+                // Update display to show secure MoMo payment
+                if (billingState.selectedInvoiceId) {
+                    const inv = billingState.invoices.find(i => i.id === billingState.selectedInvoiceId);
+                    const method = btn.getAttribute('data-method').toUpperCase();
+                    DOM.payButton.innerHTML = `<i class="fas fa-mobile-alt"></i> Pay ${inv.total.toLocaleString()} CFA via ${method}`;
+                }
+            });
+        });
     }
 
     // ─── Tabs ─────────────────────────────
@@ -82,36 +104,28 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderInvoices() {
         DOM.invoiceList.innerHTML = '';
         if (billingState.invoices.length === 0) {
-            DOM.invoiceList.innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--c-gray-500); background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">You have no outstanding invoices! 🎉</div>';
+            DOM.invoiceList.innerHTML = '<div class="glass" style="padding: 3rem; text-align: center; color: var(--c-mist); border-radius: var(--radius-lg);">You have no outstanding invoices! 🎉</div>';
             return;
         }
 
         billingState.invoices.forEach(inv => {
             const card = document.createElement('div');
             card.className = `invoice-card ${billingState.selectedInvoiceId === inv.id ? 'selected' : ''}`;
-            // Inline styling fallback for card if not firmly defined in CSS
-            card.style.cssText = `
-                display: flex; justify-content: space-between; align-items: center; 
-                background: white; padding: 1.5rem; border-radius: var(--radius-lg); 
-                box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.3s ease;
-                border: 2px solid ${billingState.selectedInvoiceId === inv.id ? 'var(--c-teal-500)' : 'transparent'};
-                margin-bottom: 1rem;
-            `;
             
             card.innerHTML = `
                 <div class="inv-info">
-                    <h3 style="margin-bottom: 0.25rem; color: var(--text-dark);">${inv.type}</h3>
-                    <p style="font-size: 0.875rem; color: var(--c-gray-600);"><i class="fas fa-calendar-alt"></i> ${inv.date} &nbsp;|&nbsp; <i class="fas fa-user-md"></i> ${inv.doctor}</p>
-                    <p style="font-size: 0.75rem; color: var(--c-gray-400); margin-top: 5px;">Invoice #${inv.id}</p>
+                    <h3 class="inv-type">${inv.type}</h3>
+                    <p class="inv-meta"><i class="fas fa-calendar-alt"></i> ${inv.date} &nbsp;|&nbsp; <i class="fas fa-user-md"></i> ${inv.doctor}</p>
+                    <p class="inv-id">Invoice #${inv.id}</p>
                 </div>
-                <div class="inv-amount" style="text-align: right;">
-                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--c-primary);">${inv.total.toLocaleString()} CFA</span>
+                <div class="inv-amount">
+                    <span class="amount-value">${inv.total.toLocaleString()} CFA</span>
                 </div>
             `;
             
             card.addEventListener('click', () => {
                 billingState.selectedInvoiceId = inv.id;
-                renderInvoices(); // Re-render to update selected border
+                renderInvoices(); 
                 updateSummary();
             });
             
@@ -122,26 +136,23 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderHistory() {
         DOM.receiptList.innerHTML = '';
         if (billingState.history.length === 0) {
-            DOM.receiptList.innerHTML = '<p>No payment history found.</p>';
+            DOM.receiptList.innerHTML = '<p class="text-muted" style="text-align: center; padding: 2rem;">No payment history found.</p>';
             return;
         }
 
         billingState.history.forEach(pay => {
             const card = document.createElement('div');
-            card.style.cssText = `
-                display: flex; justify-content: space-between; align-items: center; 
-                background: white; padding: 1.5rem; border-radius: var(--radius-lg); 
-                border-left: 4px solid var(--c-green-500);
-                box-shadow: var(--shadow-sm); margin-bottom: 1rem;
-            `;
+            card.className = 'invoice-card history-card';
+            card.style.borderLeft = '4px solid var(--c-success)';
+            
             card.innerHTML = `
                 <div class="pay-info">
-                    <h3 style="margin-bottom: 0.25rem; color: var(--c-gray-800); font-size: 1.1rem;">${pay.desc}</h3>
-                    <p style="font-size: 0.875rem; color: var(--c-gray-500);"><i class="fas fa-check-circle" style="color: var(--c-green-500);"></i> Paid on ${pay.date}</p>
-                    <p style="font-size: 0.75rem; color: var(--c-gray-400); margin-top: 5px;">Ref: #${pay.id} via ${pay.method}</p>
+                    <h3 class="pay-desc">${pay.desc}</h3>
+                    <p class="pay-meta"><i class="fas fa-check-circle" style="color: var(--c-success);"></i> Paid on ${pay.date}</p>
+                    <p class="pay-ref">Ref: #${pay.id} via ${pay.method}</p>
                 </div>
-                <div class="pay-amount" style="text-align: right;">
-                    <span style="font-size: 1.25rem; font-weight: 600; color: var(--c-gray-600);">${pay.amount.toLocaleString()} CFA</span>
+                <div class="pay-amount">
+                    <span class="amount-value" style="color: var(--c-steel);">${pay.amount.toLocaleString()} CFA</span>
                 </div>
             `;
             DOM.receiptList.appendChild(card);
@@ -162,15 +173,15 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Build items
         DOM.summaryItems.innerHTML = inv.items.map(item => `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                <span style="color: var(--c-gray-600);">${item.name}</span>
-                <span style="font-weight: 500;">${item.cost.toLocaleString()} CFA</span>
+            <div class="summary-item" style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span class="item-name" style="color: var(--c-mist); font-size: 0.95rem;">${item.name}</span>
+                <span class="item-cost" style="font-weight: 600; color: var(--c-obsidian);">${item.cost.toLocaleString()} CFA</span>
             </div>
         `).join('');
 
         DOM.totalAmountElement.textContent = `${inv.total.toLocaleString()} CFA`;
         DOM.payButton.disabled = false;
-        DOM.payButton.innerHTML = `<i class="fas fa-lock"></i> Pay ${inv.total.toLocaleString()} CFA Securely`;
+        DOM.payButton.innerHTML = `<i class="fas fa-shield-alt"></i> Pay ${inv.total.toLocaleString()} CFA Securely Now`;
     }
 
     // ─── Simulate Payment ───────────────────
@@ -207,13 +218,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 renderHistory();
                 updateSummary();
 
+
                 // Open Modal
                 const txSpan = DOM.modal.querySelector('.modal-txid');
-                const amtSpan = document.querySelector('.modal-total span');
+                const amtSpan = DOM.modal.querySelector('.payment-value');
                 const dateSpan = DOM.modal.querySelector('.modal-date');
+                const patientSpan = DOM.modal.querySelector('.modal-patient');
+                const doctorSpan = DOM.modal.querySelector('.modal-doctor');
+                const notesPara = DOM.modal.querySelector('#modal-notes');
+
+                // Mock Patient (usually from session/auth)
+                const mockPatient = "John Doe"; 
+
                 if (txSpan) txSpan.textContent = billingState.history[0].id;
                 if (amtSpan) amtSpan.textContent = `${inv.total.toLocaleString()} CFA`;
                 if (dateSpan) dateSpan.textContent = billingState.history[0].date;
+                if (patientSpan) patientSpan.textContent = mockPatient;
+                if (doctorSpan) doctorSpan.textContent = inv.doctor;
+                
+                // Varied Notes based on type
+                if (notesPara) {
+                    if (inv.type.includes('Cardiology')) {
+                        notesPara.textContent = "Patient assessment complete. Rhythm is stable. Recommended daily low-intensity cardio and low-sodium diet. EKG attached to portal.";
+                    } else if (inv.type.includes('Lab')) {
+                        notesPara.textContent = "Full blood panel processed. All markers within normal range except vitamin D (slight deficiency). Supplement plan provided in patient portal.";
+                    } else {
+                        notesPara.textContent = "Standard consultation notes: Patient is in good health. No immediate concerns. Continue current wellness regimen.";
+                    }
+                }
                 
                 DOM.modal.style.display = 'flex';
 

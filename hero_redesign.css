@@ -1,0 +1,250 @@
+/* Redesigned Dark Hero Section Styles */
+
+.hero-dark-redesign {
+    background-color: #121418;
+    color: #ffffff;
+    padding: 120px 0 80px 0;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-dark-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.hero-dark-left {
+    flex: 1;
+    max-width: 550px;
+    z-index: 2;
+}
+
+.hero-dark-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 200, 160, 0.1);
+    border-radius: 9999px;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+}
+
+.hero-dark-badge i {
+    color: #00c8a0;
+    font-size: 0.85rem;
+}
+
+.hero-dark-badge span {
+    color: #00c8a0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.hero-dark-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 24px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -1px;
+}
+
+.text-gradient-cyan-yellow {
+    background: linear-gradient(90deg, #98fb98 0%, #f0e68c 50%, #00ffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-dark-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #a0aab2;
+    margin-bottom: 40px;
+    max-width: 480px;
+}
+
+.hero-dark-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-cyan-solid {
+    background-color: #00c8a0;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cyan-solid:hover {
+    background-color: #00a886;
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+.btn-outline-cyan {
+    background-color: transparent;
+    color: #00c8a0;
+    border: 1px solid #00c8a0;
+    padding: 12px 28px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-cyan:hover {
+    background-color: rgba(0, 200, 160, 0.1);
+    transform: translateY(-2px);
+    color: #00c8a0;
+}
+
+.hero-dark-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    /* Remove background and padding to avoid weird white blocks */
+    /* background: #ffffff; */
+    border-radius: 48px;
+    z-index: 2;
+}
+
+.main-doctor-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 48px;
+    display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.floating-badge {
+    position: absolute;
+    background: #ffffff;
+    color: #121418;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+    z-index: 3;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.badge-left {
+    top: 25%;
+    left: -60px;
+    animation-delay: 0s;
+}
+
+.badge-right {
+    bottom: 15%;
+    right: -40px;
+    animation-delay: 2s;
+}
+
+.text-cyan {
+    color: #00c8a0;
+}
+
+/* Adjust top bar and header */
+.site-header {
+    background-color: #f7f9fa;
+}
+
+.header-top-bar {
+    display: none; /* The new design doesn't show the top bar */
+}
+
+/* Header style modifications for the hero redesign */
+.btn-header-cyan {
+    background-color: #00c8a0;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-header-cyan:hover {
+    background-color: #00a886;
+    color: #ffffff;
+}
+
+@media (max-width: 992px) {
+    .hero-dark-container {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 40px;
+    }
+    
+    .hero-dark-left {
+        max-width: 100%;
+    }
+    
+    .hero-dark-description {
+        margin: 0 auto 40px auto;
+    }
+    
+    .hero-dark-actions {
+        justify-content: center;
+    }
+    
+    .hero-dark-title {
+        font-size: 3rem;
+    }
+    
+    .badge-left {
+        left: -10px;
+    }
+    
+    .badge-right {
+        right: -10px;
+    }
+}

@@ -4,6 +4,17 @@
 // ─── Dummy Accounts Database ───────────────────────────────────────────
 const DUMMY_ACCOUNTS = [
     {
+        id: 'admin_001',
+        email: 'admin@summitcare.com',
+        password: 'admin',
+        firstName: 'Admin',
+        lastName: 'User',
+        fullName: 'admin',
+        role: 'Admin',
+        department: 'Information Technology',
+        location: 'Main Hospital'
+    },
+    {
         id: 'user_001',
         email: 'john.doe@patient.com',
         password: 'summit123',
@@ -185,8 +196,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         localStorage.setItem('summitCare_email', email);
                     }
 
-                    showToast('Welcome back, ' + match.firstName + '! Redirecting\u2026', 'success');
-                    setTimeout(function () { window.location.href = 'dashboard.html'; }, 1400);
+                    showToast('Welcome back, ' + (match.role === 'Admin' ? 'Admin' : match.firstName) + '! Redirecting\u2026', 'success');
+                    setTimeout(function () { 
+                        window.location.href = match.role === 'Admin' ? 'admin_dashboard.html' : 'dashboard.html'; 
+                    }, 1400);
 
                 } else {
                     submitBtn.innerHTML = originalHTML;
@@ -225,8 +238,8 @@ function injectCredentialsHelper() {
     box.className = 'demo-accounts-box';
     box.innerHTML = `
         <details>
-            <summary><i class="fas fa-key"></i> Demo Accounts <span class="demo-badge">5 accounts</span></summary>
-            <p class="demo-hint">All passwords: <strong>summit123</strong> &nbsp;·&nbsp; Click a name to autofill.</p>
+            <summary><i class="fas fa-key"></i> Demo Accounts <span class="demo-badge">6 accounts</span></summary>
+            <p class="demo-hint">Click a name below to automatically fill credentials.</p>
             <table class="demo-table">
                 <thead><tr><th>Name</th><th>Email</th></tr></thead>
                 <tbody>${rows}</tbody>

@@ -1,3 +1,38 @@
+// Summit Care - Admin Dashboard Logic
+// Authentication and Access Control
+(function checkAuth() {
+    const sessionStr = localStorage.getItem('summitCare_userSession');
+    const userDataStr = localStorage.getItem('summitCare_userData');
+    
+    if (!sessionStr || !userDataStr) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const userData = JSON.parse(userDataStr);
+    if (userData.role !== 'Admin') {
+        window.location.href = 'dashboard.html';
+        return;
+    }
+
+    // Set admin name in UI if element exists
+    window.addEventListener('DOMContentLoaded', () => {
+        const adminNameEl = document.getElementById('adminName');
+        if (adminNameEl) adminNameEl.textContent = userData.fullName || 'Admin';
+        
+        // Handle Logout
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('summitCare_userSession');
+                localStorage.removeItem('summitCare_userData');
+                window.location.href = 'login.html';
+            });
+        }
+    });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     // Selectors
     const navLinks = document.querySelectorAll('.admin-nav-link');

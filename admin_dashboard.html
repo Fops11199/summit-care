@@ -3,30 +3,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Summit Care Admin Dashboard - Manage patients and appointments" />
-    <title>Admin Dashboard | Summit Care</title>
+    <title>Executive Dashboard | Summit Care Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+
     <style>
         :root {
             --sidebar-width: 280px;
+            --topbar-height: 80px;
+            --admin-bg: #F1F5F9;
+            --sidebar-bg: #0F172A;
+            --accent-teal: #00D4B8;
+            --admin-border: rgba(0, 0, 0, 0.05);
+            --card-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
         }
 
         body {
-            background-color: var(--c-ivory);
+            background-color: var(--admin-bg);
+            color: #1E293B;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Admin Sidebar */
+        /* Sidebar Styles */
         .admin-sidebar {
             width: var(--sidebar-width);
-            background-color: var(--c-obsidian);
-            color: var(--c-white);
+            background: linear-gradient(180deg, #0F172A 0%, #172554 100%);
+            color: #F8FAFC;
             height: 100vh;
             position: fixed;
             left: 0;
@@ -34,83 +42,100 @@
             display: flex;
             flex-direction: column;
             z-index: 1000;
-            transition: transform var(--transition-normal);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
         }
 
         .sidebar-header {
-            padding: var(--space-6) var(--space-5);
+            padding: 2rem 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .sidebar-nav {
             flex: 1;
-            padding: var(--space-4) 0;
+            padding: 1.5rem 0.75rem;
+            overflow-y: auto;
         }
 
         .nav-group {
-            margin-bottom: var(--space-6);
+            margin-bottom: 2rem;
         }
 
         .nav-group-title {
-            padding: 0 var(--space-6);
-            font-size: 0.75rem;
+            padding: 0 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--c-mist);
-            margin-bottom: var(--space-3);
+            letter-spacing: 0.12em;
+            color: #64748B;
+            margin-bottom: 0.75rem;
         }
 
         .admin-nav-link {
             display: flex;
             align-items: center;
-            gap: var(--space-4);
-            padding: var(--space-3) var(--space-6);
-            color: var(--c-silver);
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            color: #CBD5E1;
             text-decoration: none;
-            transition: all var(--transition-fast);
-            border-left: 3px solid transparent;
-        }
-
-        .admin-nav-link:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--c-teal-400);
-        }
-
-        .admin-nav-link.active {
-            background: rgba(0, 184, 158, 0.1);
-            color: var(--c-teal-400);
-            border-left-color: var(--c-teal-500);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            font-size: 0.9375rem;
         }
 
         .admin-nav-link i {
             width: 20px;
             text-align: center;
+            opacity: 0.7;
             font-size: 1.1rem;
         }
 
+        .admin-nav-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--accent-teal);
+        }
+
+        .admin-nav-link:hover i {
+            opacity: 1;
+        }
+
+        .admin-nav-link.active {
+            background: rgba(0, 212, 184, 0.12);
+            color: var(--accent-teal);
+        }
+
+        .admin-nav-link.active i {
+            opacity: 1;
+            color: var(--accent-teal);
+        }
+
         .sidebar-footer {
-            padding: var(--space-5);
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .user-profile-mini {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: 0.75rem;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-md);
-            background: var(--c-teal-500);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-teal), #00B89E);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 212, 184, 0.3);
         }
 
-        /* Main Content */
+        /* Main Content Styles */
         .admin-main {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -120,117 +145,123 @@
         }
 
         .admin-top-bar {
-            height: 76px;
-            background: var(--c-white);
-            border-bottom: 1px solid var(--color-border);
+            height: var(--topbar-height);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--admin-border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 var(--space-7);
+            padding: 0 2.5rem;
             position: sticky;
             top: 0;
             z-index: 900;
         }
 
+        .glass {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+        }
+
         .search-wrapper {
             position: relative;
-            width: 300px;
+            width: 380px;
         }
 
         .search-wrapper i {
             position: absolute;
-            left: 12px;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--c-mist);
+            color: #94A3B8;
         }
 
         .search-input {
             width: 100%;
-            padding: 0.6rem 1rem 0.6rem 2.5rem;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--color-border);
-            background: var(--c-ivory);
+            padding: 0.75rem 1rem 0.75rem 2.8rem;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            background: #F8FAFC;
+            transition: all 0.2s;
             font-family: inherit;
         }
 
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 212, 184, 0.1);
+        }
+
         .admin-content {
-            padding: var(--space-7);
+            padding: 2.5rem;
             flex: 1;
         }
 
-        /* Dashboard Overview */
+        /* Stats Cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: var(--space-6);
-            margin-bottom: var(--space-8);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .stat-card {
-            background: var(--c-white);
-            padding: var(--space-6);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
+            background: white;
+            padding: 1.75rem;
+            border-radius: 20px;
+            border: 1px solid var(--admin-border);
+            box-shadow: var(--card-shadow);
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
+            transition: transform 0.3s ease;
         }
 
+        .stat-card:hover { transform: translateY(-5px); }
+
         .stat-info h3 {
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-1);
+            font-size: 0.85rem;
+            color: #64748B;
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
         }
 
         .stat-value {
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--c-obsidian);
+            font-weight: 800;
+            color: #0F172A;
+            line-height: 1;
         }
 
         .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
-        .stat-icon.blue { background: #E0F2FE; color: #0369A1; }
-        .stat-icon.teal { background: var(--c-teal-50); color: var(--c-teal-700); }
-        .stat-icon.amber { background: var(--c-amber-100); color: #B45309; }
-        .stat-icon.rose { background: #FFE4E6; color: #BE123C; }
+        .stat-icon.blue { background: #EEF2FF; color: #4F46E5; }
+        .stat-icon.teal { background: #ECFDF5; color: #10B981; }
+        .stat-icon.amber { background: #FFFBEB; color: #D97706; }
+        .stat-icon.rose { background: #FFF1F2; color: #F43F5E; }
 
-        /* Sections */
-        .dashboard-section {
-            display: none;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        .dashboard-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Tables */
+        /* Tables & Containers */
         .card-container {
-            background: var(--c-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--admin-border);
+            box-shadow: var(--card-shadow);
             overflow: hidden;
-            margin-bottom: var(--space-6);
+            margin-bottom: 2rem;
         }
 
         .card-header {
-            padding: var(--space-5) var(--space-6);
-            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--admin-border);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -243,82 +274,60 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
         }
 
         th {
-            background: #F9FAFB;
-            padding: var(--space-4) var(--space-6);
+            background: #F8FAFC;
+            padding: 1rem 2rem;
             font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--color-text-muted);
-            border-bottom: 1px solid var(--color-border);
+            color: #64748B;
+            text-align: left;
         }
 
         td {
-            padding: var(--space-4) var(--space-6);
-            border-bottom: 1px solid var(--color-border);
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid #F1F5F9;
             font-size: 0.9375rem;
+            vertical-align: middle;
         }
 
         tr:last-child td { border-bottom: none; }
 
-        .patient-cell {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-        }
-
-        .patient-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #E5E7EB;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Messaging UI */
+        /* Messaging */
         .messaging-container {
             display: grid;
-            grid-template-columns: 320px 1fr;
-            height: calc(100vh - 200px);
-            background: var(--c-white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
+            grid-template-columns: 340px 1fr;
+            height: calc(100vh - 250px);
+            background: white;
+            border-radius: 24px;
             overflow: hidden;
+            border: 1px solid var(--admin-border);
+            box-shadow: var(--card-shadow);
         }
 
         .thread-list {
-            border-right: 1px solid var(--color-border);
+            border-right: 1px solid #F1F5F9;
+            background: #F8FAFC;
             overflow-y: auto;
         }
 
         .thread-item {
-            padding: var(--space-4) var(--space-5);
-            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem;
+            border-bottom: 1px solid #F1F5F9;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
-        .thread-item:hover { background: var(--c-ivory); }
-        .thread-item.active { background: var(--c-teal-50); border-left: 4px solid var(--c-teal-500); }
+        .thread-item:hover { background: white; }
+        .thread-item.active { background: white; border-left: 4px solid var(--accent-teal); }
 
-        .thread-item h4 { font-size: 0.9rem; margin-bottom: 4px; }
-        .thread-item p { font-size: 0.8rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        .chat-window {
-            display: flex;
-            flex-direction: column;
-        }
-
+        .chat-window { display: flex; flex-direction: column; }
         .chat-header {
-            padding: var(--space-4) var(--space-6);
-            border-bottom: 1px solid var(--color-border);
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid #F1F5F9;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -326,247 +335,303 @@
 
         .chat-messages {
             flex: 1;
-            padding: var(--space-6);
+            padding: 2rem;
             overflow-y: auto;
+            background: #FFFFFF;
             display: flex;
             flex-direction: column;
-            gap: var(--space-4);
+            gap: 1.5rem;
         }
 
         .message-bubble {
             max-width: 70%;
-            padding: var(--space-3) var(--space-4);
-            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
             font-size: 0.9375rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .message-bubble.doctor {
             align-self: flex-end;
-            background: var(--c-teal-500);
-            color: var(--c-white);
-            border-bottom-right-radius: 2px;
+            background: var(--accent-teal);
+            color: white;
+            border-bottom-right-radius: 4px;
         }
 
         .message-bubble.patient {
             align-self: flex-start;
-            background: var(--c-ivory);
-            color: var(--c-obsidian);
-            border-bottom-left-radius: 2px;
+            background: #F1F5F9;
+            color: #1E293B;
+            border-bottom-left-radius: 4px;
         }
 
         .chat-input {
-            padding: var(--space-4) var(--space-6);
-            border-top: 1px solid var(--color-border);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #F1F5F9;
             display: flex;
-            gap: var(--space-3);
+            gap: 1rem;
         }
 
         .chat-input input {
             flex: 1;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--color-border);
+            padding: 0.85rem 1.25rem;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+            background: #F8FAFC;
             font-family: inherit;
         }
 
-        /* Mobile Adjustments */
-            .admin-sidebar {
-                transform: translateX(-100%);
-            }
-            .admin-sidebar.open {
-                transform: translateX(0);
-            }
-            .admin-main {
-                margin-left: 0;
-            }
-            .admin-top-bar {
-                padding: 0 var(--space-4);
-            }
-            .search-wrapper {
-                width: 180px;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .admin-content {
-                padding: var(--space-4);
-            }
-            .overview-main-grid {
-                grid-template-columns: 1fr !important;
-            }
-            .messaging-container {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-            .thread-list {
-                border-right: none;
-                border-bottom: 1px solid var(--color-border);
-                max-height: 300px;
-            }
-            .sidebar-overlay {
-                display: none;
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 950;
-                backdrop-filter: blur(4px);
-            }
-            .sidebar-overlay.active {
-                display: block;
-            }
+        /* Utility */
+        .dashboard-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .dashboard-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1024px) {
+            .admin-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .admin-sidebar.open { transform: translateX(0); }
+            .admin-main { margin-left: 0; }
             .sidebar-toggle {
                 display: flex !important;
                 align-items: center;
                 justify-content: center;
-                width: 40px;
-                height: 40px;
-                background: var(--c-ivory);
-                border: 1px solid var(--color-border);
-                border-radius: var(--radius-md);
-                cursor: pointer;
+                width: 44px; height: 44px;
+                border: none; background: white;
+                border-radius: 12px; cursor: pointer;
+                box-shadow: var(--card-shadow);
             }
         }
 
-        .sidebar-toggle {
-            display: none;
+        .sidebar-toggle { display: none; }
+        .sidebar-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px); z-index: 950; display: none;
         }
+        .sidebar-overlay.active { display: block; }
+
+
 
         .overview-main-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: var(--space-6);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1200px) { .overview-main-grid { grid-template-columns: 1fr; } }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent-teal);
+            color: #0F172A;
+            box-shadow: 0 4px 12px rgba(0, 212, 184, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #00B89E;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: #E2E8F0;
+            color: #475569;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+            background: rgba(0, 212, 184, 0.05);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #94A3B8;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #F8FAFC;
+        }
+
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .btn-full { width: 100%; }
+
+        /* Status Pills */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .pill-teal {
+            background: #F0FDF4;
+            color: #10B981;
+            border: 1px solid #DCFCE7;
+        }
+
+        .pill-amber {
+            background: #FFFBEB;
+            color: #D97706;
+            border: 1px solid #FEF3C7;
+        }
+
+        .pill-rose {
+            background: #FFF1F2;
+            color: #E11D48;
+            border: 1px solid #FFE4E6;
         }
     </style>
 </head>
-<body>
+<body class="admin-body">
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <aside class="admin-sidebar" id="adminSidebar">
         <div class="sidebar-header">
-            <a class="logo" href="index.html">
-                <img src="images/summit-care-logo.png" alt="Summit Care Logo" class="logo-img" style="width: 32px;">
-                <span class="logo-text" style="color: white; font-size: 1.2rem;">Summit Care Admin</span>
+            <a class="logo" href="index.html" style="text-decoration: none;">
+                <img src="images/summit-care-logo.png" alt="Logo" style="height: 32px; filter: brightness(0) invert(1); margin-right: 12px;">
+                <span class="logo-text" style="color: white; font-size: 1.2rem; font-weight: 700;">Summit <span style="color: var(--c-teal-400);">Admin</span></span>
             </a>
         </div>
         
         <nav class="sidebar-nav">
             <div class="nav-group">
-                <div class="nav-group-title">Main Portal</div>
+                <div class="nav-group-title">Executive</div>
                 <a href="#" class="admin-nav-link active" data-section="overview">
-                    <i class="fas fa-chart-pie"></i>
-                    <span>Overview</span>
+                    <i class="fas fa-chart-line"></i> <span>Overview</span>
                 </a>
                 <a href="#" class="admin-nav-link" data-section="patients">
-                    <i class="fas fa-users"></i>
-                    <span>Patients</span>
+                    <i class="fas fa-user-shield"></i> <span>Patients</span>
                 </a>
                 <a href="#" class="admin-nav-link" data-section="appointments">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Appointments</span>
-                </a>
-                <a href="#" class="admin-nav-link" data-section="messages">
-                    <i class="fas fa-comment-dots"></i>
-                    <span>Messages</span>
+                    <i class="fas fa-calendar-check"></i> <span>Appointments</span>
                 </a>
             </div>
-            
+
             <div class="nav-group">
-                <div class="nav-group-title">System</div>
-                <a href="#" class="admin-nav-link" data-section="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
+                <div class="nav-group-title">Communications</div>
+                <a href="#" class="admin-nav-link" data-section="messages">
+                    <i class="fas fa-envelope-open-text"></i> <span>Consultations</span>
                 </a>
                 <a href="#" class="admin-nav-link" data-section="reports">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Reports</span>
+                    <i class="fas fa-file-contract"></i> <span>Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Settings</div>
+                <a href="#" class="admin-nav-link" data-section="settings">
+                    <i class="fas fa-sliders-h"></i> <span>System Config</span>
                 </a>
             </div>
         </nav>
-        
+
+
         <div class="sidebar-footer">
             <div class="user-profile-mini">
-                <div class="user-avatar">DR</div>
+                <div class="user-avatar" id="adminAvatar">AD</div>
                 <div class="user-info">
-                    <div style="font-weight: 600; font-size: 0.9rem;">Dr. Sarah Johnson</div>
-                    <div style="font-size: 0.75rem; color: var(--c-mist);">Neurologist</div>
+                    <div class="user-name" id="adminName" style="color: white; font-weight: 600; font-size: 0.9rem;">Admin User</div>
+                    <div class="user-role" id="adminRole" style="color: #94A3B8; font-size: 0.75rem;">Administrator</div>
                 </div>
             </div>
+            <button class="admin-nav-link" id="logoutBtn" style="margin-top: 1.5rem; width: 100%; border: none; background: rgba(239, 68, 68, 0.1); color: #F87171; justify-content: center; cursor: pointer;">
+                <i class="fas fa-sign-out-alt"></i> <span>Sign Out</span>
+            </button>
         </div>
     </aside>
 
     <main class="admin-main">
-        <header class="admin-top-bar">
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Menu">
+        <header class="admin-top-bar glass">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="search-wrapper">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search patients..." class="search-input" id="globalSearch">
+                    <input type="text" class="search-input" id="globalSearch" placeholder="Search records...">
                 </div>
             </div>
-            
-            <div class="admin-actions" style="display: flex; gap: 1rem; align-items: center;">
-                <button class="btn btn-sm btn-outline"><i class="fas fa-bell"></i></button>
-                <button class="btn btn-sm btn-primary" id="bookNewBtn">Book Appointment</button>
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <button class="btn btn-primary btn-sm" id="bookNewBtn">
+                    <i class="fas fa-plus"></i> Book New
+                </button>
             </div>
         </header>
 
         <div class="admin-content" id="adminContent">
             <!-- Overview Section -->
             <section id="section-overview" class="dashboard-section active">
-                <h1 class="display-md" style="margin-bottom: var(--space-6);">Portal Overview</h1>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h3>Total Patients</h3>
-                            <div class="stat-value" id="stat-total-patients">0</div>
-                            <div style="font-size: 0.8rem; color: var(--c-success); margin-top: 4px;">
-                                <i class="fas fa-arrow-up"></i> 12% this month
-                            </div>
-                        </div>
-                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                <div style="margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <h1 style="font-size: 2rem; font-weight: 800; color: #0f172a; letter-spacing: -0.02em;">Dashboard Overview</h1>
+                        <p style="color: #64748b; margin-top: 4px;">Real-time operational summary and key metrics.</p>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h3>Appointments Today</h3>
-                            <div class="stat-value" id="stat-today-appointments">0</div>
-                            <div style="font-size: 0.8rem; color: var(--c-mist); margin-top: 4px;">
-                                Next: 10:00 AM
-                            </div>
-                        </div>
-                        <div class="stat-icon teal"><i class="fas fa-calendar-check"></i></div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h3>Pending Messages</h3>
-                            <div class="stat-value" id="stat-pending-messages">0</div>
-                            <div style="font-size: 0.8rem; color: var(--c-danger); margin-top: 4px;">
-                                3 urgent unread
-                            </div>
-                        </div>
-                        <div class="stat-icon rose"><i class="fas fa-envelope-open-text"></i></div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-info">
-                            <h3>Revenue (MTD)</h3>
-                            <div class="stat-value">7.4M CFA</div>
-                            <div style="font-size: 0.8rem; color: var(--c-success); margin-top: 4px;">
-                                <i class="fas fa-arrow-up"></i> 8%
-                            </div>
-                        </div>
-                        <div class="stat-icon amber"><i class="fas fa-dollar-sign"></i></div>
+                    <div style="background: white; padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid #f1f5f9; font-weight: 600; color: #64748b; font-size: 0.85rem;">
+                        <i class="far fa-calendar-alt" style="color: var(--c-teal-500); margin-right: 8px;"></i>
+                        <span id="currentDate">April 8, 2026</span>
                     </div>
                 </div>
 
-                <div class="overview-main-grid">
+                <div class="stats-grid reveal-up">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Active Patients</h3>
+                            <div class="stat-value" id="stat-total-patients">0</div>
+                        </div>
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Today's Schedule</h3>
+                            <div class="stat-value" id="stat-today-appointments">0</div>
+                        </div>
+                        <div class="stat-icon teal"><i class="fas fa-calendar-alt"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Pending Consults</h3>
+                            <div class="stat-value" id="stat-pending-messages">0</div>
+                        </div>
+                        <div class="stat-icon amber"><i class="fas fa-comment-dots"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>System Health</h3>
+                            <div class="stat-value" style="font-size: 1.5rem; color: var(--c-success);">99.9%</div>
+                        </div>
+                        <div class="stat-icon rose"><i class="fas fa-heartbeat"></i></div>
+                    </div>
+                </div>
+
+                <div class="overview-main-grid reveal-up" style="margin-top: 2rem;">
                     <div class="card-container">
                         <div class="card-header">
-                            <h2 style="font-size: 1.1rem;">Recent Patient Activity</h2>
-                            <a href="#" style="color: var(--c-teal-500); font-size: 0.875rem; text-decoration: none;">View All</a>
+                            <h3 style="font-weight: 700; font-size: 1.1rem;">Recent Activity</h3>
+                            <button class="btn btn-ghost btn-sm" style="color: var(--c-teal-500);">View All</button>
                         </div>
                         <div class="table-responsive">
                             <table id="recent-activity-table">
@@ -574,23 +639,23 @@
                                     <tr>
                                         <th>Patient</th>
                                         <th>Activity</th>
-                                        <th>Date</th>
+                                        <th>Timestamp</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Dynamic content -->
+                                    <!-- Populated by JS -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
+                    
                     <div class="card-container">
                         <div class="card-header">
-                            <h2 style="font-size: 1.1rem;">Today's Schedule</h2>
+                            <h3 style="font-weight: 700; font-size: 1.1rem;">Today's Live Queue</h3>
                         </div>
-                        <div style="padding: var(--space-5);" id="today-schedule-list">
-                            <!-- Dynamic content -->
+                        <div class="card-body" id="today-schedule-list" style="padding: 1.5rem;">
+                            <!-- Populated by JS -->
                         </div>
                     </div>
                 </div>
@@ -598,26 +663,25 @@
 
             <!-- Patients Section -->
             <section id="section-patients" class="dashboard-section">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
-                    <h1 class="display-md">Patient Directory</h1>
-                    <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New Patient</button>
-                </div>
-                
                 <div class="card-container">
+                    <div class="card-header">
+                        <h3 style="font-weight: 700;">Patient Registry</h3>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Opening new patient form...')">Add New Patient</button>
+                    </div>
                     <div class="table-responsive">
                         <table id="patients-table">
                             <thead>
                                 <tr>
                                     <th>Patient Name</th>
-                                    <th>Patient ID</th>
-                                    <th>Age/Gender</th>
+                                    <th>ID</th>
+                                    <th>Age/Sex</th>
                                     <th>Last Visit</th>
-                                    <th>Status</th>
+                                    <th>Health Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Dynamic content -->
+                                <!-- Populated by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -626,29 +690,24 @@
 
             <!-- Appointments Section -->
             <section id="section-appointments" class="dashboard-section">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
-                    <h1 class="display-md">All Appointments</h1>
-                    <div class="buttons" style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline btn-sm">Filter</button>
-                        <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Schedule New</button>
-                    </div>
-                </div>
-                
                 <div class="card-container">
+                    <div class="card-header">
+                        <h3 style="font-weight: 700;">Master Appointment Schedule</h3>
+                    </div>
                     <div class="table-responsive">
                         <table id="all-appointments-table">
                             <thead>
                                 <tr>
-                                    <th>Date/Time</th>
+                                    <th>Time</th>
                                     <th>Patient</th>
-                                    <th>Doctor</th>
-                                    <th>Visit Type</th>
+                                    <th>Provider</th>
+                                    <th>Mode</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Dynamic content -->
+                                <!-- Populated by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -657,27 +716,29 @@
 
             <!-- Messages Section -->
             <section id="section-messages" class="dashboard-section">
-                <h1 class="display-md" style="margin-bottom: var(--space-6);">Patient Communications</h1>
                 <div class="messaging-container">
                     <div class="thread-list" id="message-thread-list">
-                        <!-- Dynamic content -->
+                        <!-- Populated by JS -->
                     </div>
                     <div class="chat-window">
                         <div class="chat-header">
-                            <div id="active-chat-name" style="font-weight: 600;">Select a patient</div>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div class="chat-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--c-teal-50); color: var(--c-teal-500); display: flex; align-items: center; justify-content: center; font-weight: 700;">?</div>
+                                <h4 id="active-chat-name" style="font-weight: 700; margin: 0;">Select a consultation</h4>
+                            </div>
                             <div class="chat-actions">
-                                <button class="btn btn-sm btn-outline"><i class="fas fa-phone"></i></button>
-                                <button class="btn btn-sm btn-outline"><i class="fas fa-folder-open"></i></button>
+                                <button class="btn btn-sm btn-outline"><i class="fas fa-video"></i> Join Virtual Room</button>
                             </div>
                         </div>
                         <div class="chat-messages" id="chat-messages-container">
-                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--c-mist);">
-                                No conversation selected
+                            <div style="text-align: center; color: #94a3b8; margin-top: 5rem;">
+                                <i class="fas fa-comments" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                                <p>Select a patient thread to view clinical consultation history</p>
                             </div>
                         </div>
-                        <div class="chat-input">
-                            <input type="text" placeholder="Type your message here..." id="chatInput">
-                            <button class="btn btn-primary" id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+                        <div class="chat-input" id="chatInputArea">
+                            <input type="text" id="chatInput" placeholder="Enter clinical notes or message...">
+                            <button class="btn btn-primary" id="sendMessageBtn">Send</button>
                         </div>
                     </div>
                 </div>
@@ -685,9 +746,7 @@
         </div>
     </main>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Global JS -->
     <script src="mock-data.js"></script>
     <script src="admin_dashboard.js"></script>
 </body>

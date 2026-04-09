@@ -1,0 +1,168 @@
+
+/* ═══════════════════════════════════════════════════
+   BILLING & RECEIPT PREMIUM STYLES
+   ═══════════════════════════════════════════════════ */
+.billing-bg {
+    background: #F1F5F9; /* Professional medical cool gray */
+}
+
+.billing-container {
+    padding-top: 140px;
+    padding-bottom: 100px;
+}
+
+.billing-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--c-obsidian);
+    margin-bottom: 3rem;
+    letter-spacing: -0.03em;
+}
+
+/* Invoice Cards */
+.invoice-card {
+    background: var(--c-white);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s var(--ease-out-expo);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoice-card:hover {
+    transform: translateX(8px);
+    border-color: var(--c-teal-400);
+    box-shadow: var(--shadow-md);
+}
+
+.invoice-card.selected {
+    border-color: var(--c-teal-500);
+    background: var(--c-teal-50);
+    box-shadow: var(--shadow-teal);
+}
+
+.inv-type {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--c-obsidian);
+    margin-bottom: 0.25rem;
+}
+
+.inv-meta {
+    font-size: 0.85rem;
+    color: var(--c-mist);
+    display: flex;
+    gap: 1rem;
+}
+
+.inv-id {
+    font-size: 0.75rem;
+    color: var(--c-slate);
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+.amount-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--c-obsidian);
+}
+
+/* Receipt Modal & Content */
+.modal-receipt-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    padding: 2.5rem;
+    border-radius: var(--radius-2xl);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.receipt-row strong {
+    color: var(--c-mist);
+    font-weight: 500;
+}
+
+.receipt-row span {
+    color: var(--c-obsidian);
+    font-weight: 600;
+}
+
+.receipt-divider {
+    border: 0;
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+}
+
+.clinical-summary {
+    background: rgba(0, 184, 158, 0.03);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    border-left: 3px solid var(--c-teal-400);
+}
+
+.modal-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-obsidian);
+    margin-top: 0.5rem;
+}
+
+.payment-value {
+    color: var(--c-teal-500);
+}
+
+/* Responsive Billing */
+@media (max-width: 992px) {
+    .billing-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-summary {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+/* Mobile Money Buttons */
+.btn-momo {
+  background: white;
+  border: 1px solid var(--color-border);
+  color: var(--c-obsidian);
+  font-size: 0.8rem !important;
+  padding: 0.75rem !important;
+  border-radius: var(--radius-md) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-mtn:hover, .btn-mtn.active {
+  background: #FFCC00 !important;
+  border-color: #E6B800 !important;
+  color: #000 !important;
+}
+
+.btn-orange:hover, .btn-orange.active {
+  background: #FF6600 !important;
+  border-color: #E65C00 !important;
+  color: #fff !important;
+}
+
